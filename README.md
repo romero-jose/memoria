@@ -8,14 +8,14 @@ En Windows se recomienda MiKTeX 2.8 o superior y TeXLive 2009 o superior en Linu
 
 Para el correcto funcionamiento de la clase, adicionalmente a la distribución de LaTeX, deberán estar
 instalados los siguientes packages:
-* geometry
-* amsmath, amssymb, amsthm
-* graphicx
-* babel
-* hyperref
-* listings
-* pgffor
-* parskip
+* `geometry`
+* `amsmath`, `amssymb`, `amsthm`
+* `graphicx`
+* `babel`
+* `hyperref`
+* `listings`
+* `pgffor`
+* `parskip`
 
 Para instrucciones de cómo instalar estos packages en su distribución, por favor consulte el manual de la misma.
 
