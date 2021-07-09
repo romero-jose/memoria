@@ -25,56 +25,52 @@ Se puede bajar el repositorio, abrir el archivo `main.tex` y compilarlo con `pdf
 ### Opciones
 La clase umemoria cuenta con variadas opciones. En primer lugar, cabe notar que se heredan todas las opciones de la clase book, por lo que opciones como twoside, fleqn, leqno, etc. se encuentran disponibles. Además, se agregan las siguientes:
 
-* leftnum: Coloca la numeración de los Teoremas, Definiciones, etc. a la izquierda.
-* rightnum (por defecto): Coloca la numeración de los Teoremas, Definiciones, etc. a la derecha.
-* contnum (por defecto): Activa la numeración correlativa entre los ambientes de tipo teorema.
-* nocontnum: Desactiva la numeración correlativa entre los ambientes de tipo teorema.
-* uprightd: Transforma todas las letras 'd' en modo matemático a fuente normal, no cursiva.
-* uprighte: Transforma todas las letras 'e' en modo matemático a fuente normal, no cursiva.
-* uprighti: Transforma todas las letras 'i' en modo matemático a fuente normal, no cursiva.
-* upright: Activa las tres opciones anteriores.
+* `leftnum`: Coloca la numeración de los Teoremas, Definiciones, etc. a la izquierda.
+* `rightnum`: (por defecto): Coloca la numeración de los Teoremas, Definiciones, etc. a la derecha.
+* `contnum`: (por defecto): Activa la numeración correlativa entre los ambientes de tipo teorema.
+* `nocontnum`: Desactiva la numeración correlativa entre los ambientes de tipo teorema.
+* `uprightd`: Transforma todas las letras 'd' en modo matemático a fuente normal, no cursiva.
+* `uprighte`: Transforma todas las letras 'e' en modo matemático a fuente normal, no cursiva.
+* `uprighti`: Transforma todas las letras 'i' en modo matemático a fuente normal, no cursiva.
+* `upright`: Activa las tres opciones anteriores.
 
-Se pasan por defecto las opciones 12pt y openany. Las opciones upright están desactivadas por defecto.
+Se pasan por defecto las opciones `12pt`,`letterpaper`,`oneside`. Las opciones `upright` están desactivadas por defecto.
 
 ### Comandos
-La clase provee los siguientes comandos, proporcionados para definir parámetros necesarios para la generación de la portada,
-etc.
+La clase provee los siguientes comandos, proporcionados para definir parámetros necesarios para la generación de la portada, etc.
 
-* \depto{texto}: Departamento al que pertenece el autor.
-* \author{texto}: Nombre del autor.
-* \title{texto}: Título del trabajo. Debe estar escrito SIN fines de línea (\\).
-* \memoria{texto} [opcional]: Nombre del título optado en el caso de una memoria. (Algo como "Ingeniero/a Civil en ...")
-* \tesis{texto} [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magister en ..." o "Doctorado en ...".)
-* \cotutela{texto} [opcional]: Nombre de la otra institución de cotutela en el caso de una tesis (si aplica).
-* \guia{texto}: Nombre del profesor guía. Se pueden incluir dos o más profesores seperados por coma.
-* \coguia{texto} [opcional]: Nombre del profesor co-guía (si aplica). Se pueden incluir dos o más profesores co-guía seperados por coma.
-* 
-* \comision{profe1, profe2, profeN}: Nombres de los integrantes de la comisión evaluadora. Se pueden omitir argumentos.
-* \auspicio{texto} [opcional]: Indica qué institucion u otro texto incluir en el anuncio de auspicio (si aplica).
-* \anho{texto} [opcional]: El año en que se va a dar el examen de grado.
+* `\depto{texto}`: Departamento al que pertenece el autor.
+* `\author{texto}`: Nombre del autor.
+* `\title{texto}`: Título del trabajo. Debe estar escrito SIN fines de línea (\\).
+* `\memoria{texto}` [opcional]: Nombre del título optado en el caso de una memoria. (Algo como "Ingeniero/a Civil en ...")
+* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magister en ..." o "Doctorado en ...".)
+* `\cotutela{texto}` [opcional]: Nombre de la otra institución de cotutela en el caso de una tesis (si aplica).
+* `\guia{texto}`: Nombre del profesor guía. Se pueden incluir dos o más profesores seperados por coma.
+* `\coguia{texto}` [opcional]: Nombre del profesor co-guía (si aplica). Se pueden incluir dos o más profesores co-guía seperados por coma.
+* `\comision{profe1, profe2, profeN}`: Nombres de los integrantes de la comisión evaluadora. Se pueden omitir argumentos.
+* `\auspicio{texto}` [opcional]: Indica qué institucion u otro texto incluir en el anuncio de auspicio (si aplica).
+* `\anho{texto}` [opcional]: El año en que se va a dar el examen de grado.
 
 Todos los comandos convierten sus argumentos a mayúsuclas, a excepción del auspicio.
 
 ### Entornos
 Se definen además entornos que ayudan a dar un formateo adecuado a cada parte de la memoria, además de ayudar a mantener una coherencia semántica en el código.
 
-* \begin{abstract} \end{abstract}: Delimita la sección de Resumen de la memoria.
-* \begin{dedicatoria} \end{dedicatoria}: Delimita la dedicatoria. El texto se escribe en cursivas, alineado horizontalmente a la izquierda y centrado verticalmente.
-* \begin{thanks} \end{thanks}: Sección de agradecimientos.
-* \begin{intro} \end{intro}: Introducción. Es un capítulo no numerado, que se agrega al índice.
-* \begin{conclusion} \end{conclusion}: Conclusion. Es un capítulo no numerado, que se agrega al índice.
+* `\begin{abstract}` `\end{abstract}`: Delimita la sección de Resumen de la memoria.
+* `\begin{dedicatoria}` `\end{dedicatoria}`: Delimita la dedicatoria. El texto se escribe en cursivas, alineado horizontalmente a la izquierda y centrado verticalmente.
+* `\begin{thanks}` `\end{thanks}`: Sección de agradecimientos.
 
 #### Entornos matemáticos
 Además, se definen entornos 'matemáticos' que permiten agergar teoremas, definiciónes, etc. de manera ordenada y coherente con el estilo del texto. Estos entornos son
 
-* defn: Definicion.
-* teo: Teorema.
-* cor: Corolario.
-* lema: Lema.
-* prop: Proposicion.
-* ej: Ejemplo.
-* obs: Observacion.
-* proof: Demostración. Se agrega automáticamente el símbolo de término de la demostración al final de esta.
+* `defn`: Definicion.
+* `teo`: Teorema.
+* `cor`: Corolario.
+* `lema`: Lema.
+* `prop`: Proposicion.
+* `ej`: Ejemplo.
+* `obs`: Observacion.
+* `proof`: Demostración. Se agrega automáticamente el símbolo de término de la demostración al final de esta.
 
 Por defecto, cada uno de estos entornos tiene una numeración correlativa e intercapítulos, es decir, escribir un teorema, una definición y luego otro teorema en el capítulo 1 y luego otro teorema en el capítulo 2 tendrá como resultado lo siguiente:
 
@@ -83,7 +79,7 @@ Por defecto, cada uno de estos entornos tiene una numeración correlativa e inte
 	Teorema 1.3. ...
 	Teorema 2.1. ...
 
-Sin embargo, el comportamiento anterior puede modificarse con la opción nocontnum, la que al ser activada produce la siguiente salida:
+Sin embargo, el comportamiento anterior puede modificarse con la opción `nocontnum`, la que al ser activada produce la siguiente salida:
 
 	Teorema 1.1. ...
 	Definición 1.1. ...
@@ -91,11 +87,12 @@ Sin embargo, el comportamiento anterior puede modificarse con la opción nocontn
 	Teorema 2.1. ...
 
 ### Otros Comandos
+
 Por último, existen comandos de letras en modo matemático. Cada letra mayúscula del abecedario tiene un comando asociado, el que imprimirá una letra en una fuente diferente (que depende de la letra). La fuente en que una letra se imprime ha sido elegida de forma arbitraria, intentando rescatar las que se usan con mayor frecuencia. Si se desea modificar la letra que imprime un comando basta con redefinirlo mediante ```\renewcommand{\<letra>}{<comando>}```.
 
 ## Créditos
 
-Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile. Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus. Luego fue actualizado por Aidan Hogan para armonizarlo mejor con la pauta actual de la biblioteca y evitar problemas comunes con las entregas de memoria/tesis.
+Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile. Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus. Luego fue actualizado por Aidan Hogan para armonizarlo mejor con la pauta actual de la biblioteca y evitar problemas comunes con las entregas de memorias/tesis.
 
 
 ## Changelog
