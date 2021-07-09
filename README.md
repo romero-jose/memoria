@@ -99,14 +99,16 @@ Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumn
 
 
 ## Changelog
-[09-07-2021]
+[09-07-2021] v1.6
 - Quitando el template.tex y scripts de build.
 - Redefiniendo la portada para seguir mejor la pauta de la biblioteca.
 - Cambiando las definiciones para generar la portada, ofreciendo más opciones (doble titulación, cotutela, co-guías, etc.).
-- Quitando páginas en blanco del inicio del documento.
+- Quitando páginas en blanco del inicio del documento. Quitando comandos redundantes de \cleardoublepage.
+- Agregando el título y autor al meta-datos del PDF automáticamente.
 - Renombrando el memoria.tex a main.tex para indicar que se puede usar para tesis (¿quizás se debe renombrar la clase en el futuro?).
 - Actualizando el main.tex como un ejemplo que se puede adaptar (cambiando la codificación a utf8, quitando upright y otras opciones obsoletas, cambiando los argumentos de book, utilizando las nuevas definiciones para la portada, agregando números a la introducción y la conclusión, etc.).
 - Renombrando los archivos para los capítulos.
+- Actualizando la documentación para quitar las instrucciones de instalación de la clase.
 
 [11-05-2021]
 - Upright desactivado por defecto
