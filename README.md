@@ -1,4 +1,4 @@
-# Clase umemoria v1.6 - Manual de Instrucciones
+# Clase umemoria v1.6 - Memorias y Tesis; FCFM; UChile
 
 09-07-2021
 
