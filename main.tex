@@ -1,4 +1,9 @@
-\documentclass{umemoria}
+% se puede agregar la opción [english] para 
+%  memorias o tesis en inglés
+\documentclass{umemoria} 
+
+\usepackage[utf8]{inputenc}
+
 \depto{Departamento de ???}
 \author{Nombre Completo Autor}
 \title{Título de la Memoria/Tesis}
@@ -27,18 +32,22 @@
 %\anho{2021} % incluir solo para reemplazar el año actual
 
 \usepackage{lipsum}
-\usepackage{booktabs}
-
-\usepackage[utf8]{inputenc}
 
 \begin{document}
 
 \frontmatter
 \maketitle
 
-\begin{abstract}
+\begin{resumen}
 \lipsum[1-4]
-\end{abstract}
+\end{resumen}
+
+% opcional: incluir para tesis en inglés;
+%  en general hay que tener el resumen y abstract
+%   en ambos idiomas
+%\begin{abstract}
+%\lipsum[1-4]
+%\end{abstract}
 
 \begin{dedicatoria}
 Una dedicatoria corta.

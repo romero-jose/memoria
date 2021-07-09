@@ -13,13 +13,16 @@
 %% Definicion de Condicionales
 \newif\if@swapnum
 \newif\if@contnum
+\newif\if@en
 \@swapnumfalse
 \@contnumtrue
+\@enfalse
 
 %% Declaracion de Opciones
 \DeclareOption{leftnum}{\@swapnumtrue}
 \DeclareOption{rightnum}{\@swapnumfalse}
 \DeclareOption{contnum}{\@contnumtrue}
+\DeclareOption{english}{\@entrue}
 \DeclareOption{nocontnum}{\@contnumfalse}
 \DeclareOption{uprightd}{\AtEndOfPackage{\DeclareMathSymbol{d}{\mathalpha}{operators}{`d}}}
 \DeclareOption{uprighte}{\AtEndOfPackage{\DeclareMathSymbol{e}{\mathalpha}{operators}{`e}}}
@@ -35,7 +38,12 @@
 \RequirePackage[utf8]{inputenc} %Encoding
 \RequirePackage[top=2cm, left=3cm, bottom=2cm, right=2cm, paper=letterpaper]{geometry} % Margenes
 \RequirePackage{amsmath, amssymb, amsthm, graphicx} % Varios
-\RequirePackage[spanish, es-nolists, es-lcroman]{babel} % Lenguaje
+
+\if@en
+	\RequirePackage{babel}
+\else
+	\RequirePackage[spanish, es-nolists, es-lcroman]{babel} % Lenguaje
+\fi
 \RequirePackage[pdfpagelabels,hidelinks]{hyperref} % Links y numeracion del PDF
 \RequirePackage{listings} % Codigo Fuente
 \RequirePackage{pgffor} % foreach
@@ -46,8 +54,12 @@
 %% Agregar la bibliografía al índice
 \let\oldbib\bibliography
 \renewcommand{\bibliography}[1]{%
-  \oldbib{#1}%
-  \addcontentsline{toc}{chapter}{\protect\numberline{}Bibliograf\'ia}%
+	\oldbib{#1}%
+	\if@en
+		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliography}%
+	\else
+		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliograf\'ia}%
+	\fi
 }
 \addto\captionsspanish{\renewcommand\listtablename{Índice de Tablas}}
 \addto\captionsspanish{\renewcommand\listfigurename{Índice de Ilustraciones}}
@@ -66,20 +78,30 @@
 %% Entornos nuevos
 \newenvironment{abstract}{%
 \clearpage
+\if@en
+	\chapter*{Abstract}
+\else
+	\chapter*{Resumen}
+\fi
+}{\vfill\null}
+
+\newenvironment{resumen}{%
 \chapter*{Resumen}
 }{\vfill\null}
 
 \newenvironment{dedicatoria}{\clearpage\null\vspace{\stretch{1}}\begin{flushright}\itshape}{\end{flushright}\vspace{\stretch{2}}\null}
 \let\thanks\undefined
-\newenvironment{thanks}{\clearpage\chapter*{Agradecimientos}}{\vfill\null}
-\newenvironment{intro}{
-  \chapter*{Introducción}
-  \addcontentsline{toc}{chapter}{\protect\numberline{}Introducción}
-}{\vfill\null}
-\newenvironment{conclusion}{
-  \chapter*{Conclusión}
-  \addcontentsline{toc}{chapter}{\protect\numberline{}Conclusión}
-}{\vfill\null}
+
+\newenvironment{thanks}{
+	\clearpage
+	\if@en
+		\chapter*{Acknowledgments}
+	\else
+		\chapter*{Agradecimientos}
+	\fi
+	
+}
+{\vfill\null}
 
 %% Teoremas, proofs, etc
 \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
@@ -92,19 +114,39 @@
 \theoremstyle{miestilo}
 \newtheorem{defn}{Definición}[chapter]
 \if@contnum
-\newtheorem{teo}[defn]{Teorema}
-\newtheorem{cor}[defn]{Corolario}
-\newtheorem{lema}[defn]{Lema}
-\newtheorem{prop}[defn]{Proposición}
+	\if@en
+		\newtheorem{teo}[defn]{Theorem}
+		\newtheorem{cor}[defn]{Corollary}
+		\newtheorem{lema}[defn]{Lemma}
+		\newtheorem{prop}[defn]{Proposition}
+	\else
+		\newtheorem{teo}[defn]{Teorema}
+		\newtheorem{cor}[defn]{Corolario}
+		\newtheorem{lema}[defn]{Lema}
+		\newtheorem{prop}[defn]{Proposición}
+	\fi
 \else
-\newtheorem{teo}{Teorema}[chapter]
-\newtheorem{cor}{Corolario}[chapter]
-\newtheorem{lema}{Lema}[chapter]
-\newtheorem{prop}{Proposición}[chapter]
+	\if@en
+		\newtheorem{teo}{Theorem}[chapter]
+		\newtheorem{cor}{Corollary}[chapter]
+		\newtheorem{lema}{Lemma}[chapter]
+		\newtheorem{prop}{Proposition}[chapter]
+	\else
+		\newtheorem{teo}{Teorema}[chapter]
+		\newtheorem{cor}{Corolario}[chapter]
+		\newtheorem{lema}{Lema}[chapter]
+		\newtheorem{prop}{Proposición}[chapter]
+	\fi
 \fi
 \theoremstyle{miobs}
-\newtheorem*{ej}{Ejemplo}
-\newtheorem*{obs}{Observación}
+
+\if@en
+	\newtheorem*{ej}{Example}
+	\newtheorem*{obs}{Observation}
+\else
+	\newtheorem*{ej}{Ejemplo}
+	\newtheorem*{obs}{Observación}
+\fi
 
 %% Comandos para la portada
 \global\def\@universidad{Universidad de Chile}

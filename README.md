@@ -105,6 +105,7 @@ Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumn
 - Renombrando el memoria.tex a main.tex para indicar que se puede usar para tesis (¿quizás se debe renombrar la clase en el futuro?).
 - Actualizando el main.tex como un ejemplo que se puede adaptar (cambiando la codificación a utf8, quitando upright y otras opciones obsoletas, cambiando los argumentos de book, utilizando las nuevas definiciones para la portada, agregando números a la introducción y la conclusión, etc.).
 - Renombrando los archivos para los capítulos.
+- Agregando la opción `english` a la clase para cambiar el idioma al inglés
 - Actualizando la documentación para quitar las instrucciones de instalación de la clase.
 
 [11-05-2021]
