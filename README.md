@@ -3,11 +3,8 @@
 09-07-2021
 
 ## Requisitos
-El requisito principal para instalar esta clase es, por supuesto, una distribución de LaTeX funcionando.
-En Windows se recomienda MiKTeX 2.8 o superior y TeXLive 2009 o superior en Linux u OS X. Dado que esta es la
-configuración recomendada, las instrucciones siguientes estarán centradas en estas distribuciones. De todas formas,
-la instalación de esta clase es posible en cualquier distribución relativamente reciente de LaTeX pero
-los métodos de instalación podrían variar.
+El requisito principal para usar esta clase es, por supuesto, una distribución de LaTeX funcionando.
+En Windows se recomienda MiKTeX 2.8 o superior y TeXLive 2009 o superior en Linux u OS X.
 
 Para el correcto funcionamiento de la clase, adicionalmente a la distribución de LaTeX, deberán estar
 instalados los siguientes packages:
