@@ -41,15 +41,15 @@ La clase provee los siguientes comandos, proporcionados para definir parámetros
 
 * `\depto{texto}`: Departamento al que pertenece el autor.
 * `\author{texto}`: Nombre del autor.
-* `\title{texto}`: Título del trabajo. Debe estar escrito SIN fines de línea (\\).
+* `\title{texto}`: Título del trabajo. Debe estar escrito SIN fines de línea (`\\`).
 * `\memoria{texto}` [opcional]: Nombre del título optado en el caso de una memoria. (Algo como "Ingeniero/a Civil en ...")
-* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magister en ..." o "Doctorado en ...".)
+* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magister en ..." o "Doctor en ...".)
 * `\cotutela{texto}` [opcional]: Nombre de la otra institución de cotutela en el caso de una tesis (si aplica).
 * `\guia{texto}`: Nombre del profesor guía. Se pueden incluir dos o más profesores seperados por coma.
 * `\coguia{texto}` [opcional]: Nombre del profesor co-guía (si aplica). Se pueden incluir dos o más profesores co-guía seperados por coma.
 * `\comision{profe1, profe2, profeN}`: Nombres de los integrantes de la comisión evaluadora. Se pueden omitir argumentos.
 * `\auspicio{texto}` [opcional]: Indica qué institucion u otro texto incluir en el anuncio de auspicio (si aplica).
-* `\anho{texto}` [opcional]: El año en que se va a dar el examen de grado.
+* `\anho{texto}` [opcional]: El año en que se va a dar el examen de grado. Por defecto, será el año actual.
 
 Todos los comandos convierten sus argumentos a mayúsuclas, a excepción del auspicio.
 
