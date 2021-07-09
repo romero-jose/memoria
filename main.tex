@@ -1,0 +1,72 @@
+\documentclass{umemoria}
+\depto{Departamento de ???}
+\author{Nombre Completo Autor}
+\title{Título de la Memoria/Tesis}
+
+% puede haber varios profesores guía seperados por coma;
+% pero se es una memoria, solo puede haber un profesor guía
+\guia{Nombre Completo Guía} 
+
+% puede haber varios profesores co-guía seperados por coma;
+% pero si es una memoria, el profesor co-guía será el primer
+% integrante de la comisión
+% \coguia{Nombre Guía} % incluir en caso de co-guía de *tesis*
+
+% incluir ambos comandos para una doble titulación
+%  o quitar el comando que no aplica
+\memoria{Ingenier[o/a?] Civil en ???}
+\tesis{Magister en ???}
+% \tesis{Doctor en ???} % incluir solo este comando para doctorados
+
+%\cotutela{Nombre Institución} % incluir en caso de cotutela
+
+\comision{Nombre Completo Uno,Nombre Completo Dos,Nombre Completo Tres}
+%\auspicio{Nombre Institución} % incluir en caso de recibir financiamiento
+
+% tiene que ser el año en que se da el examen de grafo (defensa)
+%\anho{2021} % incluir solo para reemplazar el año actual
+
+\usepackage{lipsum}
+\usepackage{booktabs}
+
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\begin{abstract}
+\lipsum[1-4]
+\end{abstract}
+
+\begin{dedicatoria}
+Una dedicatoria corta.
+\end{dedicatoria}
+
+\begin{thanks}
+\lipsum[1-2]
+\end{thanks}
+
+\tableofcontents
+\listoftables % opcional
+\listoffigures % opcional
+
+\mainmatter
+
+\input{intro.tex}
+\input{cap2.tex}
+\input{cap3.tex}
+\input{conclu.tex}
+
+% ver https://www.overleaf.com/learn/latex/Glossaries
+% \input{glosario.tex} % opcional
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+% opcional ...
+%\appendix
+%\input{anexoA.tex}
+\end{document}
