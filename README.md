@@ -61,7 +61,7 @@ Se definen además entornos que ayudan a dar un formateo adecuado a cada parte d
 * `\begin{thanks}` `\end{thanks}`: Sección de agradecimientos.
 
 #### Entornos matemáticos
-Además, se definen entornos 'matemáticos' que permiten agergar teoremas, definiciónes, etc. de manera ordenada y coherente con el estilo del texto. Estos entornos son
+Además, se definen entornos 'matemáticos' que permiten agergar teoremas, definiciones, etc. de manera ordenada y coherente con el estilo del texto. Estos entornos son:
 
 * `defn`: Definicion.
 * `teo`: Teorema.
