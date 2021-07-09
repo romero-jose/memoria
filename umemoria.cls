@@ -3,12 +3,12 @@
 %%%%%%%%	Clase U-Memoria
 %%%%%%%%	Primer Autor: Nikolas Tapia M.
 %%%%%%%%  Contacto: ntapia@dim.uchile.cl
-%%%%%%%%	Version: 1.5
+%%%%%%%%	Version: 1.6
 %%%%%%%%	Fecha: 08-07-2021
 %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[2009/09/24]
-\ProvidesClass{umemoria}[2021/07/08 v1.5 Clase LaTeX para estandarizacion de Memorias U. de Chile]
+\ProvidesClass{umemoria}[2021/07/08 v1.6 Clase LaTeX para estandarizacion de Memorias U. de Chile]
 
 %% Definicion de Condicionales
 \newif\if@swapnum
