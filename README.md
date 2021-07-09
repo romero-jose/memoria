@@ -1,6 +1,6 @@
-# Clase umemoria v1.5 - Manual de Instrucciones
+# Clase umemoria v1.6 - Manual de Instrucciones
 
-10-07-2017
+09-07-2021
 
 ## Requisitos
 El requisito principal para instalar esta clase es, por supuesto, una distribución de LaTeX funcionando.
@@ -16,39 +16,17 @@ instalados los siguientes packages:
 * graphicx
 * babel
 * hyperref
+* listings
+* pgffor
 * parskip
 
-Para instrucciones de como instalar estos packages en su distribución, por favor consulte el manual de la misma.
-Esta clase se encuentra en fase de desarrollo, así que estos requisitos podrían variar a futuro. Se está
-realizando el máximo esfuerzo posible para tener el mínimo de dependencias, de forma que esta clase
-pueda ser utilizada en un ambiente minimal.
-
-## Instalación
-La instalación de la clase depende del sistema operativo y la distribución de LaTeX en uso.
-
-### Windows/MiKTeX 2.8 o superior
-Basta con los archivos umemoria.cls y escudou.pdf a la carpeta %MiKTeX%\tex\latex\base y ejecutar el comando
-	```initexmf --update-fndb```
-en la línea de comandos. Como alternativa a este último paso, se puede ir al menú Inicio y bajo el apartado
-de MiKTeX iniciar el programa "Settings", y hacer click en el botón "Refresh FNDB".
-
-### Linux/TeXLive 2009 o superior
-Es necesarior copiar los archivos umemoria.cls y escudou.pdf al directorio $TEXLIVE/texmf-local/tex/latex/base y ejecutar
-el comando ```maketexlsr```
-
-### Alternativa
-Otra alternativa es copiar los archivos umemoria.cls y escudou.pdf a la misma carpeta donde se encuentra el archivo fuente
-de LaTeX con el cual se desea usar la clase, aunque este método es poco recomendable puesto que no permite usar
-facilmente la clase con múltiples fuentes (en diferentes carpetas).
+Para instrucciones de cómo instalar estos packages en su distribución, por favor consulte el manual de la misma.
 
 ## Modo de Uso
-Debido a que esta clase se encuentra en formato "class", basta con incluir la línea ```\documentclass[<opciones>]{umemoria}``` en el preámbulo del documento.
-
-Las opciones de la clase y los comandos disponibles son detallados a continuación.
+Se puede bajar el repositorio, abrir el archivo `main.tex` y compilarlo con `pdflatex` (o algo parecido).
 
 ### Opciones
-La clase umemoria cuenta con variadas opciones. En primer lugar, cabe notar que se heredan todas las opciones de la clase
-book, por lo que opciones como twoside, fleqn, leqno, etc. se encuentran disponibles. Además, se agregan las siguientes:
+La clase umemoria cuenta con variadas opciones. En primer lugar, cabe notar que se heredan todas las opciones de la clase book, por lo que opciones como twoside, fleqn, leqno, etc. se encuentran disponibles. Además, se agregan las siguientes:
 
 * leftnum: Coloca la numeración de los Teoremas, Definiciones, etc. a la izquierda.
 * rightnum (por defecto): Coloca la numeración de los Teoremas, Definiciones, etc. a la derecha.
@@ -65,16 +43,20 @@ Se pasan por defecto las opciones 12pt y openany. Las opciones upright están de
 La clase provee los siguientes comandos, proporcionados para definir parámetros necesarios para la generación de la portada,
 etc.
 
+* \depto{texto}: Departamento al que pertenece el autor.
 * \author{texto}: Nombre del autor.
 * \title{texto}: Título del trabajo. Debe estar escrito SIN fines de línea (\\).
-* \date{texto}: Fecha de entrega.
-* \carrera{texto}: Nombre de la carrera.
-* \guia{texto}: Nombre del profesor guía.
-* \depto{texto}: Departamento al que pertenece el autor.
+* \memoria{texto} [opcional]: Nombre del título optado en el caso de una memoria. (Algo como "Ingeniero/a Civil en ...")
+* \tesis{texto} [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magister en ..." o "Doctorado en ...".)
+* \cotutela{texto} [opcional]: Nombre de la otra institución de cotutela en el caso de una tesis (si aplica).
+* \guia{texto}: Nombre del profesor guía. Se pueden incluir dos o más profesores seperados por coma.
+* \coguia{texto} [opcional]: Nombre del profesor co-guía (si aplica). Se pueden incluir dos o más profesores co-guía seperados por coma.
+* 
 * \comision{profe1, profe2, profeN}: Nombres de los integrantes de la comisión evaluadora. Se pueden omitir argumentos.
-* \auspicio{texto}: Indica qué institucion u otro texto incluir en el anuncio de auspicio. En caso de ser omitido el comando, no se muestra la línea.
+* \auspicio{texto} [opcional]: Indica qué institucion u otro texto incluir en el anuncio de auspicio (si aplica).
+* \anho{texto} [opcional]: El año en que se va a dar el examen de grado.
 
-Todos los comandos convierten sus argumentos a mayúsuclas, a excepción del último.
+Todos los comandos convierten sus argumentos a mayúsuclas, a excepción del auspicio.
 
 ### Entornos
 Se definen además entornos que ayudan a dar un formateo adecuado a cada parte de la memoria, además de ayudar a mantener una coherencia semántica en el código.
@@ -97,8 +79,7 @@ Además, se definen entornos 'matemáticos' que permiten agergar teoremas, defin
 * obs: Observacion.
 * proof: Demostración. Se agrega automáticamente el símbolo de término de la demostración al final de esta.
 
-Por defecto, cada uno de estos entornos tiene una numeración correlativa e intercapítulos, es decir, escribir un teorema, una definición y luego otro teorema
-en el capítulo 1 y luego otro teorema en el capítulo 2 tendrá como resultado lo siguiente:
+Por defecto, cada uno de estos entornos tiene una numeración correlativa e intercapítulos, es decir, escribir un teorema, una definición y luego otro teorema en el capítulo 1 y luego otro teorema en el capítulo 2 tendrá como resultado lo siguiente:
 
 	Teorema 1.1. ...
 	Definición 1.2. ...
@@ -113,17 +94,23 @@ Sin embargo, el comportamiento anterior puede modificarse con la opción nocontn
 	Teorema 2.1. ...
 
 ### Otros Comandos
-Por último, existen comandos de letras en modo matemático. Cada letra mayúscula del abecedario tiene un comando asociado, el que imprimirá una letra en una fuente
-diferente (que depende de la letra). La fuente en que una letra se imprime ha sido elegida de forma arbitraria, intentando rescatar las que se usan
-con mayor frecuencia. Si se desea modificar la letra que imprime un comando basta con redefinirlo mediante ```\renewcommand{\<letra>}{<comando>}```
+Por último, existen comandos de letras en modo matemático. Cada letra mayúscula del abecedario tiene un comando asociado, el que imprimirá una letra en una fuente diferente (que depende de la letra). La fuente en que una letra se imprime ha sido elegida de forma arbitraria, intentando rescatar las que se usan con mayor frecuencia. Si se desea modificar la letra que imprime un comando basta con redefinirlo mediante ```\renewcommand{\<letra>}{<comando>}```.
 
 ## Créditos
 
-Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile.
-Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus.
+Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile. Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus. Luego fue actualizado por Aidan Hogan para armonizarlo mejor con la pauta actual de la biblioteca y evitar problemas comunes con las entregas de memoria/tesis.
 
 
 ## Changelog
+[09-07-2021]
+- Quitando el template.tex y scripts de build.
+- Redefiniendo la portada para seguir mejor la pauta de la biblioteca.
+- Cambiando las definiciones para generar la portada, ofreciendo más opciones (doble titulación, cotutela, co-guías, etc.).
+- Quitando páginas en blanco del inicio del documento.
+- Renombrando el memoria.tex a main.tex para indicar que se puede usar para tesis (¿quizás se debe renombrar la clase en el futuro?).
+- Actualizando el main.tex como un ejemplo que se puede adaptar (cambiando la codificación a utf8, quitando upright y otras opciones obsoletas, cambiando los argumentos de book, utilizando las nuevas definiciones para la portada, agregando números a la introducción y la conclusión, etc.).
+- Renombrando los archivos para los capítulos.
+
 [11-05-2021]
 - Upright desactivado por defecto
 
