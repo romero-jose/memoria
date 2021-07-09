@@ -25,6 +25,7 @@ Se puede bajar el repositorio, abrir el archivo `main.tex` y compilarlo con `pdf
 ### Opciones
 La clase `umemoria` cuenta con variadas opciones. En primer lugar, cabe notar que se heredan todas las opciones de la clase book, por lo que opciones como `fleqn`, `leqno`, etc. se encuentran disponibles. Además, se agregan las siguientes:
 
+* `english`: Use English titles for Table of Contents, Bibliography, etc.
 * `leftnum`: Coloca la numeración de los Teoremas, Definiciones, etc. a la izquierda.
 * `rightnum`: (por defecto): Coloca la numeración de los Teoremas, Definiciones, etc. a la derecha.
 * `contnum`: (por defecto): Activa la numeración correlativa entre los ambientes de tipo teorema.
