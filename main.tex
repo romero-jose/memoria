@@ -1,6 +1,6 @@
 % se puede agregar la opción [english] para 
 %  memorias o tesis en inglés (borrando el archivo .aux)
-\documentclass{umemoria} 
+\documentclass[english]{umemoria} 
 
 \depto{Departamento de ???}
 \author{Nombre Completo Autor}
@@ -9,11 +9,11 @@
 % incluir ambos comandos para una doble titulación
 %  o quitar el comando que no aplica
 \memoria{Ingenier[o/a?] Civil en ???}
-\tesis{Magister en ???}
+\tesis{Magíster en ???}
 % \tesis{Doctor en ???} % incluir solo este comando para doctorados
 
 % puede haber varios profesores guía seperados por coma;
-% pero se es una memoria, solo puede haber un profesor guía
+% pero si es una memoria, solo puede haber un profesor guía
 \guia{Nombre Completo Guía} 
 
 % puede haber varios profesores co-guía seperados por coma;
@@ -24,9 +24,10 @@
 %\cotutela{Nombre Institución} % incluir en caso de cotutela
 
 \comision{Nombre Completo Uno,Nombre Completo Dos,Nombre Completo Tres}
+
 %\auspicio{Nombre Institución} % incluir en caso de recibir financiamiento
 
-% tiene que ser el año en que se da el examen de grado (defensa)
+% tiene que ser el año en que se da el examen de título/grado (defensa)
 %\anho{2021} % incluir solo para reemplazar el año actual
 
 \usepackage{lipsum}
@@ -41,7 +42,7 @@
 \end{resumen}
 
 % opcional: incluir para tesis en inglés;
-%  en general hay que tener el resumen y abstract
+%  en este caso hay que tener el resumen y abstract
 %   en ambos idiomas
 %\begin{abstract}
 %\lipsum[1-4]

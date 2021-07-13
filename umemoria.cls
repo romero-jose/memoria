@@ -39,6 +39,10 @@
 \RequirePackage[top=2cm, left=3cm, bottom=2cm, right=2cm, paper=letterpaper]{geometry} % Margenes
 \RequirePackage{amsmath, amssymb, amsthm, graphicx} % Varios
 
+%% Caption antes de la tabla
+\RequirePackage{caption}
+\captionsetup[table]{position=above}
+
 %% Agregar palabra para anexos
 \RequirePackage[titletoc]{appendix}
 
