@@ -8,24 +8,28 @@ En Windows se recomienda MiKTeX 2.8 o superior y TeXLive 2009 o superior en Linu
 
 Para el correcto funcionamiento de la clase, adicionalmente a la distribución de LaTeX, deberán estar
 instalados los siguientes packages:
+* `inputenc`
 * `geometry`
 * `amsmath`, `amssymb`, `amsthm`
 * `graphicx`
+* `caption`
+* `appendix`
 * `babel`
 * `hyperref`
 * `listings`
 * `pgffor`
-* `parskip`
+* `etoolbox`
+* `lipsum` (solo para compilar el documento `main.tex` de ejemplo)
 
 Para instrucciones de cómo instalar estos packages en su distribución, por favor consulte el manual de la misma.
 
-Otra opción es usar [la plantilla en Overleaf](https://www.overleaf.com/latex/templates/memoria-tesis-slash-fcfm-slash-uchile/scfhvdjsvhvs), pero es posible que no tiene los últimos cambios.
+Otra opción es usar [la plantilla en Overleaf](https://www.overleaf.com/latex/templates/memoria-tesis-slash-fcfm-slash-uchile/scfhvdjsvhvs) (es posible que no tiene los últimos cambios).
 
 ## Modo de Uso
 Se puede bajar el repositorio, abrir el archivo `main.tex` y compilarlo con `pdflatex` (o algo parecido).
 
 ### Opciones
-La clase `umemoria` cuenta con variadas opciones. En primer lugar, cabe notar que se heredan todas las opciones de la clase book, por lo que opciones como `fleqn`, `leqno`, etc. se encuentran disponibles. Además, se agregan las siguientes:
+La clase `umemoria` cuenta con variadas opciones. En primer lugar, cabe notar que se heredan todas las opciones de la clase `book`. Se pasan por defecto las opciones `12pt`,`letterpaper`,`oneside`, a la clase `book` pero las opciones como `fleqn`, `leqno`, etc., también se encuentran disponibles. Además, se agregan las siguientes a la clase `umemoria`:
 
 * `english`: Use English titles for Table of Contents, Bibliography, etc.
 * `leftnum`: Coloca la numeración de los Teoremas, Definiciones, etc. a la izquierda.
@@ -37,7 +41,7 @@ La clase `umemoria` cuenta con variadas opciones. En primer lugar, cabe notar qu
 * `uprighti`: Transforma todas las letras 'i' en modo matemático a fuente normal, no cursiva.
 * `upright`: Activa las tres opciones anteriores.
 
-Se pasan por defecto las opciones `12pt`,`letterpaper`,`oneside`. Las opciones `upright` están desactivadas por defecto.
+Estas opciones están desactivadas por defecto. Para agregar una o más opciones, se puede usar `\documentclass[opt1,opt2]{umemoria}`, etc.
 
 ### Comandos
 La clase provee los siguientes comandos, proporcionados para definir parámetros necesarios para la generación de la portada, etc.
@@ -46,7 +50,7 @@ La clase provee los siguientes comandos, proporcionados para definir parámetros
 * `\author{texto}`: Nombre del autor.
 * `\title{texto}`: Título del trabajo. Debe estar escrito SIN fines de línea (`\\`).
 * `\memoria{texto}` [opcional]: Nombre del título optado en el caso de una memoria. (Algo como "Ingeniero/a Civil en ...")
-* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magister en ..." o "Doctor en ...".)
+* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magíster en ..." o "Doctor en ...".)
 * `\cotutela{texto}` [opcional]: Nombre de la otra institución de cotutela en el caso de una tesis (si aplica).
 * `\guia{texto}`: Nombre del profesor guía. Se pueden incluir dos o más profesores seperados por coma.
 * `\coguia{texto}` [opcional]: Nombre del profesor co-guía (si aplica). Se pueden incluir dos o más profesores co-guía seperados por coma.
@@ -57,10 +61,11 @@ La clase provee los siguientes comandos, proporcionados para definir parámetros
 Todos los comandos convierten sus argumentos a mayúsuclas, a excepción del auspicio.
 
 ### Entornos
-Se definen además entornos que ayudan a dar un formateo adecuado a cada parte de la memoria, además de ayudar a mantener una coherencia semántica en el código.
+Se definen además entornos que ayudan a dar un formateo adecuado a cada parte de la memoria/tesis, además de ayudar a mantener una coherencia semántica en el código.
 
-* `\begin{abstract}` `\end{abstract}`: Delimita la sección de Resumen de la memoria.
-* `\begin{dedicatoria}` `\end{dedicatoria}`: Delimita la dedicatoria. El texto se escribe en cursivas, alineado horizontalmente a la izquierda y centrado verticalmente.
+* `\begin{resumen}` `\end{resumen}`: Delimita la sección de Resumen de la memoria/tesis.
+* `\begin{abstract}` `\end{abstract}` [opcional]: Creates a section for Abstract (in English) in the memoria/tesis. Both `resumen` (in Spanish) and `abstract` (in English) should be provided when the document is in English. (Only `resumen` is required when the document is in Spanish.)
+* `\begin{dedicatoria}` `\end{dedicatoria}`: Delimita la dedicatoria. El texto se escribe en cursiva, alineado horizontalmente a la izquierda y centrado verticalmente.
 * `\begin{thanks}` `\end{thanks}`: Sección de agradecimientos.
 
 #### Entornos matemáticos
@@ -95,11 +100,12 @@ Por último, existen comandos de letras en modo matemático. Cada letra mayúscu
 
 ## Créditos
 
-Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile. Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus. Luego fue actualizado por Aidan Hogan para armonizarlo mejor con la pauta actual de la biblioteca y evitar problemas comunes con las entregas de memorias/tesis.
-
+Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile. Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus. Luego fue actualizado por Aidan Hogan para armonizarla mejor con la pauta actual de la biblioteca y evitar problemas comunes con las entregas de memorias/tesis.
 
 ## Changelog
 [13-07-2021]
+- Transferir el repo a la organización de DCCUchile y cambiar el nombre para destacar que se puede usar para tesis
+- Actualizar algunos detalles en el README.md
 - Agregando la palabra Apéndice/Appendix a la Tabla de Contenido
 
 [09-07-2021] v1.6
