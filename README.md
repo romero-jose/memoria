@@ -99,6 +99,9 @@ Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumn
 
 
 ## Changelog
+[13-07-2021]
+- Agregando la palabra Apéndice/Appendix a la Tabla de Contenido
+
 [09-07-2021] v1.6
 - Quitando el template.tex y scripts de build.
 - Redefiniendo la portada para seguir mejor la pauta de la biblioteca.
