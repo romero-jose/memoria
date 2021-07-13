@@ -2,6 +2,8 @@
 
 13-07-2021
 
+Se puede usar la clase `umemoria` para memorias y tesis (de magíster o de doctorado) de la FCFM, UChile.
+
 ## Requisitos
 El requisito principal para usar esta clase es, por supuesto, una distribución de LaTeX funcionando.
 En Windows se recomienda MiKTeX 2.8 o superior y TeXLive 2009 o superior en Linux u OS X.
