@@ -1,6 +1,6 @@
 # Clase umemoria v1.6 - Memorias y Tesis; FCFM; UChile
 
-09-07-2021
+13-07-2021
 
 ## Requisitos
 El requisito principal para usar esta clase es, por supuesto, una distribución de LaTeX funcionando.
