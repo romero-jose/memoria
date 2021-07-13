@@ -52,7 +52,7 @@ La clase provee los siguientes comandos, proporcionados para definir parámetros
 * `\author{texto}`: Nombre del autor.
 * `\title{texto}`: Título del trabajo. Debe estar escrito SIN fines de línea (`\\`).
 * `\memoria{texto}` [opcional]: Nombre del título optado en el caso de una memoria. (Algo como "Ingeniero/a Civil en ...")
-* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con \memoria{texto} en el caso de una doble titulación. (Algo como "Magíster en ..." o "Doctor en ...".)
+* `\tesis{texto}` [opcional]: Nombre del grado optado. Se puede combinar este comando con `\memoria{texto}` en el caso de una doble titulación. (Algo como "Magíster en ..." o "Doctor en ...".)
 * `\cotutela{texto}` [opcional]: Nombre de la otra institución de cotutela en el caso de una tesis (si aplica).
 * `\guia{texto}`: Nombre del profesor guía. Se pueden incluir dos o más profesores seperados por coma.
 * `\coguia{texto}` [opcional]: Nombre del profesor co-guía (si aplica). Se pueden incluir dos o más profesores co-guía seperados por coma.
