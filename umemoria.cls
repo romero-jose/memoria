@@ -39,6 +39,9 @@
 \RequirePackage[top=2cm, left=3cm, bottom=2cm, right=2cm, paper=letterpaper]{geometry} % Margenes
 \RequirePackage{amsmath, amssymb, amsthm, graphicx} % Varios
 
+%% Agregar palabra para anexos
+\RequirePackage[titletoc]{appendix}
+
 \if@en
 	\RequirePackage{babel}
 \else
@@ -296,6 +299,12 @@
 	\oldfrontmatter
 }
 \let\oldfrontmatter\relax
+
+%% Evitar problemas con tildes
+\RequirePackage{etoolbox}
+\makeatletter
+\appto{\appendices}{\def\Hy@chapapp{Appendix}}
+\makeatother
 
 %% Miscelaneos
 \newcommand{\A}{\mathcal{A}}

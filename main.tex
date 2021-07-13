@@ -1,8 +1,6 @@
 % se puede agregar la opción [english] para 
-%  memorias o tesis en inglés
+%  memorias o tesis en inglés (borrando el archivo .aux)
 \documentclass{umemoria} 
-
-\usepackage[utf8]{inputenc}
 
 \depto{Departamento de ???}
 \author{Nombre Completo Autor}
@@ -76,6 +74,7 @@ Una dedicatoria corta.
 \bibliography{bibliografia}
 
 % opcional ...
-%\appendix
-%\input{anexoA.tex}
+\begin{appendices}
+\input{anexoA.tex}
+\end{appendices}
 \end{document}
