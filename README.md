@@ -25,7 +25,7 @@ instalados los siguientes packages:
 
 Para instrucciones de cómo instalar estos packages en su distribución, por favor consulte el manual de la misma.
 
-Otra opción es usar [la plantilla en Overleaf](https://www.overleaf.com/latex/templates/memoria-tesis-slash-fcfm-slash-uchile/scfhvdjsvhvs) (es posible que no tiene los últimos cambios).
+Otra opción es usar [la plantilla en Overleaf](https://www.overleaf.com/latex/templates/memoria-tesis-slash-fcfm-slash-uchile/scfhvdjsvhvs).
 
 ## Modo de Uso
 Se puede bajar el repositorio, abrir el archivo `main.tex` y compilarlo con `pdflatex` (o algo parecido).
