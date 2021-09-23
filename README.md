@@ -25,7 +25,7 @@ instalados los siguientes packages:
 
 Para instrucciones de cómo instalar estos packages en su distribución, por favor consulte el manual de la misma.
 
-Otra opción es usar [la plantilla en Overleaf](https://www.overleaf.com/latex/templates/memoria-tesis-slash-fcfm-slash-uchile/scfhvdjsvhvs).
+Otra opción es usar [la plantilla en Overleaf](https://www.overleaf.com/latex/templates/memoria-tesis-slash-fcfm-slash-uchile/scfhvdjsvhvs). (Acabo de arreglar un bug que todavía puede aparecer en la versión 1.6 de Overleaf; he entregado los cambios, pero tienen que aprobarlos. En caso de haber un error cuando se quita el comando `\tesis{...}`, se puede reemplazar el archivo `umemoria.cls` con la versión actualizada acá y debería desparecer el problema.)
 
 ## Modo de Uso
 Se puede bajar el repositorio, abrir el archivo `main.tex` y compilarlo con `pdflatex` (o algo parecido).
