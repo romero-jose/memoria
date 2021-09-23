@@ -3,12 +3,12 @@
 %%%%%%%%	Clase U-Memoria
 %%%%%%%%	Primer Autor: Nikolas Tapia M.
 %%%%%%%%  Contacto: ntapia@dim.uchile.cl
-%%%%%%%%	Version: 1.6
-%%%%%%%%	Fecha: 08-07-2021
+%%%%%%%%	Version: 1.6.1
+%%%%%%%%	Fecha: 23-09-2021
 %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[2009/09/24]
-\ProvidesClass{umemoria}[2021/07/08 v1.6 Clase LaTeX para estandarizacion de Memorias U. de Chile]
+\ProvidesClass{umemoria}[2021/09/23 v1.6 Clase LaTeX para estandarizacion de Memorias U. de Chile]
 
 %% Definicion de Condicionales
 \newif\if@swapnum
@@ -241,16 +241,17 @@
 			\MakeUppercase\@title
 
 		\vspace{1cm}
-		\if\@tesis\@empty
-			MEMORIA PARA OPTAR AL TÍTULO DE\\\MakeUppercase\@memoria
-		\else
+		\if\@tesis\@empty\else
 			TESIS PARA OPTAR AL GRADO DE\\\MakeUppercase\@tesis
 			\if\@cotutela\@empty\else
 				\\\bigskip EN COTUTELA CON \MakeUppercase\@cotutela
 			\fi
-			\if\@memoria\@empty\else
-				\\\bigskip MEMORIA PARA OPTAR AL TÍTULO DE\\\MakeUppercase\@memoria
+		\fi
+		\if\@memoria\@empty\else
+			\if\@tesis\@empty\else
+				\\\bigskip
 			\fi
+			 MEMORIA PARA OPTAR AL TÍTULO DE\\\MakeUppercase\@memoria
 		\fi
 
 		\vspace{1cm}
