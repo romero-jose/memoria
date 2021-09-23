@@ -1,6 +1,6 @@
-# Clase umemoria v1.6 - Memorias y Tesis; FCFM; UChile
+# Clase umemoria v1.6.1 - Memorias y Tesis; FCFM; UChile
 
-13-07-2021
+23-09-2021
 
 Se puede usar la clase `umemoria` para memorias y tesis (de magíster o de doctorado) de la FCFM, UChile.
 
@@ -105,6 +105,9 @@ Por último, existen comandos de letras en modo matemático. Cada letra mayúscu
 Esta clase fue inicialmente desarrollada y mantenida por Nikolas Tapia M., alumno memorista del Departamento de Ingeniería Matemática de la Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile. Luego fue mantenido por ADI - Área de Infotecnologías y actualmente por el Centro Tecnológico Ucampus. Luego fue actualizado por Aidan Hogan para armonizarla mejor con la pauta actual de la biblioteca y evitar problemas comunes con las entregas de memorias/tesis.
 
 ## Changelog
+[23-09-2021] v.1.6.1
+- Arreglar un bug con tener solo el título de memoria
+
 [13-07-2021]
 - Transferir el repo a la organización de DCCUchile y cambiar el nombre para destacar que se puede usar para tesis
 - Actualizar algunos detalles en el README.md
