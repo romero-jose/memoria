@@ -1,20 +1,63 @@
 % se puede agregar la opción [english] para 
 %  memorias o tesis en inglés (borrando el archivo .aux)
-\documentclass{umemoria} 
+\documentclass{umemoria}
+\usepackage{booktabs}
 
-\depto{Departamento de ???}
-\author{Nombre Completo Autor}
-\title{Título de la Memoria/Tesis}
+%% Uncomment for final version:
+% \usepackage{microtype}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\setmainfont{Minion 3}[
+  Numbers={Proportional,Lining},
+  UprightFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption},
+      {Size={9-14},Font=*Regular},
+      {Size={14.0-24},Font=*Subhead},
+      {Size={24-},Font=*Display}
+  }},
+  ItalicFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption Italic},
+      {Size={9-14},Font=*Italic},
+      {Size={14.0-24},Font=*Subhead Italic},
+      {Size={24-},Font=*Display Italic}
+  }},
+  BoldFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption Bold},
+      {Size={9-14},Font=*Bold},
+      {Size={14.0-24},Font=*Subhead Bold},
+      {Size={24-},Font=*Display Bold}
+  }},
+  BoldItalicFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption Bold Italic},
+      {Size={9-14},Font=*Bold Italic},
+      {Size={14.0-24},Font=*Subhead Bold Italic},
+      {Size={24-},Font=*Display Bold Italic}
+  }},
+  SmallCapsFeatures = {
+    Letters = SmallCaps,
+    LetterSpace = 10,
+  }]
+\setsansfont[]{Helvetica Neue}
+\setmonofont[]{JetBrains Mono}
+
+\depto{Departamento de Ciencias de la Computación}
+\author{José Luis Romero Munizaga}
+\title{Librería de Visualización de Estructuras de Datos}
 
 % incluir ambos comandos para una doble titulación
 %  o quitar el comando que no aplica
-\memoria{Ingenier[o/a?] Civil en ???}
-\tesis{Magíster en ???}
+\memoria{Ingeniero Civil en Computación}
+% \tesis{Magíster en ???}
 %\tesis{Doctor en ???} % incluir solo este comando para doctorados
 
 % puede haber varios profesores guía seperados por coma;
 % pero si es una memoria, solo puede haber un profesor guía
-\guia{Nombre Completo Guía} 
+\guia{Ivan Anselmo Sipirán Mendoza}
 
 % puede haber varios profesores co-guía seperados por coma;
 % pero si es una memoria, el profesor co-guía será el primer
