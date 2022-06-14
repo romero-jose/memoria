@@ -269,7 +269,7 @@
 		\if\@tesis\@empty\else
 			\scspaced{Tesis para optar al grado de}\\\scspace{\@tesis}
 			\if\@cotutela\@empty\else
-				\\\bigskip \scspaced{En cotutelta con \@cotutela}
+				\\\bigskip \scspaced{En cotutela con \@cotutela}
 			\fi
 		\fi
 		\if\@memoria\@empty\else
