@@ -35,16 +35,28 @@
 \LoadClass[12pt,letterpaper,oneside]{book}
 
 %% Packages necesarios
-\RequirePackage[utf8]{inputenc} %Encoding
-\RequirePackage[top=2cm, left=3cm, bottom=2cm, right=2cm, paper=letterpaper]{geometry} % Margenes
+\RequirePackage{fontspec}
+\RequirePackage[left=1.75in, right=1.75in, top=1.25in, bottom=1.5in, paper=letterpaper]{geometry} % Margenes
 \RequirePackage{amsmath, amssymb, amsthm, graphicx} % Varios
+
+%% Formato
+\IfFileExists{parskip.sty}{%
+	\usepackage{parskip}
+}{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
 
 %% Caption antes de la tabla
 \RequirePackage{caption}
 \captionsetup[table]{position=above}
 
-%% Agregar palabra para anexos
-\RequirePackage[titletoc]{appendix}
+\RequirePackage[toc, page]{appendix}
+
+% Redefines
+\renewcommand{\appendixname}{Anexo}
+\renewcommand{\appendixpagename}{Apéndices}
+\renewcommand{\appendixtocname}{Apéndices}
+
 
 \if@en
 	\RequirePackage{babel}
@@ -65,7 +77,7 @@
 	\if@en
 		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliography}%
 	\else
-		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliograf\'ia}%
+		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliografía}%
 	\fi
 }
 \addto\captionsspanish{\renewcommand\listtablename{Índice de Tablas}}
@@ -155,6 +167,18 @@
 	\newtheorem*{obs}{Observación}
 \fi
 
+%% Spaced Small Caps and All Caps (for fancy cover page)
+\newcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace = 8}\scshape#1}}
+\newcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace = 15}#1}}
+
+\newcommand\scspace[1]{\smallcapsspacing{#1}}
+\newcommand\scspaced[1]{\smallcapsspacing{\MakeLowercase{#1}}}
+\newcommand\acspaced[1]{\allcapsspacing{\MakeUppercase{#1}}}
+
+\newcommand\mcspaced[1]{\addfontfeature{LetterSpace = 8}\textsc{#1}}
+
+\newcommand\oldstyle[1]{\addfontfeature{Numbers = OldStyle}#1}
+
 %% Comandos para la portada
 \global\def\@universidad{Universidad de Chile}
 \newcommand{\setuniversidad}[1]{\def\@carrera{#1}}
@@ -228,59 +252,61 @@
 
 %%Portada
 \renewcommand{\maketitle}{
+	\newgeometry{left=1in, right=1in, top=.75in, bottom=1in}
 	\begin{titlepage}
 		\begin{minipage}{1.6cm}
 			\includegraphics[scale=.12]{imagenes/escudoU2014.pdf}
 		\end{minipage}
 		\begin{minipage}[t]{12cm}
-			\MakeUppercase\@universidad\\\MakeUppercase\@facultad\\\MakeUppercase\@depto
+			\scspaced{\@universidad\\\@facultad\\\@depto}
 		\end{minipage}
 
-		\vspace{2cm}
+		\vspace{6cm}
 		\centering
-			\MakeUppercase\@title
+			\huge \@title \normalsize\\
 
-		\vspace{1cm}
+		\vspace{100pt}
 		\if\@tesis\@empty\else
-			TESIS PARA OPTAR AL GRADO DE\\\MakeUppercase\@tesis
+			\scspaced{Tesis para optar al grado de}\\\scspace{\@tesis}
 			\if\@cotutela\@empty\else
-				\\\bigskip EN COTUTELA CON \MakeUppercase\@cotutela
+				\\\bigskip \scspaced{En cotutelta con \@cotutela}
 			\fi
 		\fi
 		\if\@memoria\@empty\else
 			\if\@tesis\@empty\else
 				\\\bigskip
 			\fi
-			 MEMORIA PARA OPTAR AL TÍTULO DE\\\MakeUppercase\@memoria
+			\scspaced{Memoria para optar al título de}\\\scspace{\@memoria}
 		\fi
 
-		\vspace{1cm}
-			\MakeUppercase\@author
+		\vspace{12pt}
+		\scspace{por\\\@author}
 
-		\vspace{2cm}
-			\foreach \x [count=\xi] in \@guia {
-				PROFESOR GUÍA\ifnum\xi>1 \ \xi \fi:\\ \MakeUppercase\x\\
+		\vspace{12pt}
+		\foreach \x [count=\xi] in \@guia {
+			\scspaced{Profesor Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}\\
 			}
 
-		\vspace{1cm}
-			\foreach \x [count=\xi] in \@coguia {
-				PROFESOR CO-GUÍA\ifnum\xi>1 \ \xi \fi:\\ \MakeUppercase\x\\
-			}
+		\vspace{12pt}
+		\foreach \x [count=\xi] in \@coguia {
+			\scspaced{Profesor Co-Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}\\
+		}
 
-		\vspace{1cm}
-			MIEMBROS DE LA COMISIÓN:\\
-			\foreach \x in \@comision { \MakeUppercase\x\\ }
+		\vspace{12pt}
+		\scspaced{comisión:}\\
+		\foreach \x in \@comision { \scspace{\x}\\ }
 
 		\if\@auspicio\@empty\else
-		\vfill
+		\vspace{12pt}
 			\normalfont
 			Este trabajo ha sido parcialmente financiado por \@auspicio
 		\fi
 
-		\vfill
-			\MakeUppercase\@lugar\\ \MakeUppercase\@anho
+		\vspace{12pt}
+		\scspace{\@lugar}\\\oldstyle{\@anho}
 	\end{titlepage}
-	
+	\restoregeometry
+
 	%% Configuración de hyperref
 	%%  (... tenemos en título, autor, etc., acá)
 	\hypersetup{
@@ -305,30 +331,3 @@
 }
 \let\oldfrontmatter\relax
 
-%% Evitar problemas con tildes
-\RequirePackage{etoolbox}
-\makeatletter
-\appto{\appendices}{\def\Hy@chapapp{Appendix}}
-\makeatother
-
-%% Miscelaneos
-\newcommand{\A}{\mathcal{A}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\D}{\mathbb{D}}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\F}{\mathcal{F}}
-\newcommand{\G}{\mathcal{G}}
-\renewcommand{\H}{\mathcal{H}}
-\newcommand{\K}{\mathcal{K}}
-\renewcommand{\L}{\mathcal{L}}
-\newcommand{\M}{\mathcal{M}}
-\newcommand{\N}{\mathbb{N}}
-\renewcommand{\M}{\mathcal{M}}
-\renewcommand{\P}{\mathbb{P}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\renewcommand{\S}{\mathcal{S}}
-\newcommand{\T}{\mathcal{T}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\1}{\mathbf{1}}
-\let\epsilon\varepsilon
