@@ -1,13 +1,13 @@
 .svn
 .svn/*
 memoria_latex.zip
-main.aux
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
 main.bbl
 main.blg
-main.fdb_latexmk
-main.fls
 main.lof
-main.log
 main.lot
 main.out
 main.pdf
