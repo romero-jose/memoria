@@ -43,8 +43,8 @@
 \IfFileExists{parskip.sty}{%
 	\usepackage{parskip}
 }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+    \setlength{\\indent}{0pt}
+    \setlength{\\skip}{6pt plus 2pt minus 1pt}}
 
 %% Caption antes de la tabla
 \RequirePackage{caption}
@@ -89,10 +89,10 @@
 %% Renovar enumerate e itemize
 \let\oldenum\enumerate
 \let\oldendenum\endenumerate
-\renewenvironment{enumerate}{\oldenum\setlength{\parskip}{\smallskipamount}}{\oldendenum}
+\renewenvironment{enumerate}{\oldenum\setlength{\\skip}{\smallskipamount}}{\oldendenum}
 \let\olditem\itemize
 \let\oldenditem\enditemize
-\renewenvironment{itemize}{\olditem\setlength{\parskip}{\smallskipamount}}{\oldenditem}
+\renewenvironment{itemize}{\olditem\setlength{\\skip}{\smallskipamount}}{\oldenditem}
 
 %% Entornos nuevos
 \newenvironment{abstract}{%
@@ -123,7 +123,7 @@
 {\vfill\null}
 
 %% Teoremas, proofs, etc
-\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
+\renewenvironment{proof}[1][\proofname] {\\\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
 
 \newtheoremstyle{miestilo}{\baselineskip}{3pt}{\itshape}{}{\bfseries}{}{.5em}{}
 \newtheoremstyle{miobs}{\baselineskip}{3pt}{}{}{\bfseries}{}{.5em}{}
@@ -258,14 +258,20 @@
 			\includegraphics[scale=.12]{imagenes/escudoU2014.pdf}
 		\end{minipage}
 		\begin{minipage}[t]{12cm}
-			\scspaced{\@universidad\\\@facultad\\\@depto}
+			\scspaced{\@universidad}
+			
+			\scspaced{\@facultad}
+	
+			\scspaced{\@depto}
 		\end{minipage}
 
-		\vspace{6cm}
-		\centering
-			\huge \@title \normalsize\\
-
+		\begin{center}
+			\vfill
+			\huge
+			\scspace{\@title}
+		\end{center}
 		\vspace{100pt}
+		\begin{center}
 		\if\@tesis\@empty\else
 			\scspaced{Tesis para optar al grado de}\\\scspace{\@tesis}
 			\if\@cotutela\@empty\else
@@ -279,31 +285,26 @@
 			\scspaced{Memoria para optar al título de}\\\scspace{\@memoria}
 		\fi
 
-		\vspace{12pt}
 		\scspace{por\\\@author}
 
-		\vspace{12pt}
 		\foreach \x [count=\xi] in \@guia {
-			\scspaced{Profesor Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}\\
+			\scspaced{Profesor Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}
 			}
 
-		\vspace{12pt}
 		\foreach \x [count=\xi] in \@coguia {
-			\scspaced{Profesor Co-Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}\\
+			\scspaced{Profesor Co-Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}
 		}
 
-		\vspace{12pt}
-		\scspaced{comisión:}\\
-		\foreach \x in \@comision { \scspace{\x}\\ }
+		\scspaced{comisión:}
+		\foreach \x in \@comision { \\\scspace{\x} }
 
 		\if\@auspicio\@empty\else
-		\vspace{12pt}
 			\normalfont
 			Este trabajo ha sido parcialmente financiado por \@auspicio
 		\fi
 
-		\vspace{12pt}
 		\scspace{\@lugar}\\\oldstyle{\@anho}
+		\end{center}
 	\end{titlepage}
 	\restoregeometry
 
