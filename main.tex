@@ -1,7 +1,8 @@
-% se puede agregar la opción [english] para 
-%  memorias o tesis en inglés (borrando el archivo .aux)
 \documentclass{umemoria}
 \usepackage{booktabs}
+\usepackage[]{biblatex}
+
+\addbibresource{bibliografia.bib}
 
 %% Uncomment for final version:
 % \usepackage{microtype}
@@ -115,9 +116,9 @@ Una dedicatoria corta.
 % ver https://www.overleaf.com/learn/latex/Glossaries
 % \input{glosario.tex} % opcional
 
-\nocite{*}
-\bibliographystyle{plain}
-\bibliography{bibliografia}
+\printbibliography[
+    heading=bibintoc,
+]
 
 % opcional ...
 \begin{appendices}

@@ -70,16 +70,6 @@
 %% Lenguaje
 \addto\captionsspanish{\renewcommand\tablename{Tabla}}
 \addto\captionsspanish{\renewcommand\contentsname{Tabla de Contenido}}
-%% Agregar la bibliografía al índice
-\let\oldbib\bibliography
-\renewcommand{\bibliography}[1]{%
-	\oldbib{#1}%
-	\if@en
-		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliography}%
-	\else
-		\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliografía}%
-	\fi
-}
 \addto\captionsspanish{\renewcommand\listtablename{Índice de Tablas}}
 \addto\captionsspanish{\renewcommand\listfigurename{Índice de Ilustraciones}}
 
@@ -320,4 +310,3 @@
 	\oldfrontmatter
 }
 \let\oldfrontmatter\relax
-
