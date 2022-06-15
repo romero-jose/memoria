@@ -83,17 +83,6 @@
 \addto\captionsspanish{\renewcommand\listtablename{Índice de Tablas}}
 \addto\captionsspanish{\renewcommand\listfigurename{Índice de Ilustraciones}}
 
-%% Interlineado
-\setlength{\parskip}{2ex} %interlineado doble
-
-%% Renovar enumerate e itemize
-\let\oldenum\enumerate
-\let\oldendenum\endenumerate
-\renewenvironment{enumerate}{\oldenum\setlength{\\skip}{\smallskipamount}}{\oldendenum}
-\let\olditem\itemize
-\let\oldenditem\enditemize
-\renewenvironment{itemize}{\olditem\setlength{\\skip}{\smallskipamount}}{\oldenditem}
-
 %% Entornos nuevos
 \newenvironment{abstract}{%
 \clearpage
