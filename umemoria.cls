@@ -36,7 +36,12 @@
 
 %% Packages necesarios
 \RequirePackage{fontspec}
-\RequirePackage[left=1.75in, right=1.75in, top=1.25in, bottom=1.5in, paper=letterpaper]{geometry} % Margenes
+
+%% Márgenes bonitos
+% \RequirePackage[left=1.75in, right=1.75in, top=1.25in, bottom=1.5in, paper=letterpaper]{geometry} % Margenes
+
+%% Márgenes horribles porque eso es lo que pide la universidad ヽ(ಠ_ಠ) ノ
+\RequirePackage[left=3cm, right=2cm, top=2cm, bottom=2cm, paper=letterpaper]{geometry} % Margenes
 
 %% Formato
 \usepackage{parskip}
