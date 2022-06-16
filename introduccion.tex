@@ -17,3 +17,18 @@ El problema abordado consiste en implementar una herramiento que permita generar
 Implementar una librería que cumpla con estos requerimientos sería beneficioso para estudiantes de ciencias de la computación, profesores o personas en general, que estén aprendiendo estructuras de datos, o que deseen generar visualizaciones de estructuras de datos implementadas en Python y verlas en Jupyter Notebooks. Además, concretamente permitiría contribuir a la docencia en el curso Algoritmos y Estructuras de Datos de la FCFM.
 
 Para lograr esto se implementó la herramienta \textit{dsvisualizer}, una librería de Python que genera visualizaciones animadas de estructuras de datos implementadas por los usuarios en Jupyter Notebooks. En su versión actual se limita a listas enlazadas, pero está diseñada para poder expandirla a otras estructuras de datos. La herrmienta está implementada como un Jupyter Widget con un backend escrito en Python que se encarga de registrar las operaciones realizadas por el usuario y un frontend escrito en JavaScript que genera las visualizaciones usando las operaciones registradas por el backend. Las dos partes de la herramiento se comunican usando la librería ipywidgets, que usa tecnologías web para mantener modelos sincronizados en el frontend y el backend.
+
+\section{Objetivos}
+
+\subsection*{Objetivo General}\label{sec:obj-g}
+
+Diseñar e implementar una librería para generar visualizaciones de estructuras de datos en Notebooks de Python que sea efectiva, eficiente y usable.
+
+\subsection*{Objetivos Específicos}\label{sec:obj-e}
+
+\begin{enumerate}
+  \item Diseñar e implementar el widget para que sea fácil de usar.
+  \item Diseñar e implementar el modelo del widget.
+  \item Implementar la visualización de la estructura de datos a partir del modelo del widget.
+  \item Evaluar la utilidad y la usabilidad de la librería.
+\end{enumerate}
