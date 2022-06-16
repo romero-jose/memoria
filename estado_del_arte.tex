@@ -11,26 +11,26 @@ Otro ejemplo es la librería Lolviz~\cite{Lolviz} que, si bien si permite visual
     \centering
     \subfloat[Reftree]{
         \centering
-        \includegraphics[width=\dimexpr(\linewidth-40pt)/2\relax, height=\dimexpr(\linewidth-40pt)/2\relax]{imagenes/ejemplos/reftree}
+        \includegraphics[width=\dimexpr(\linewidth-12pt)/2\relax, height=\dimexpr(\linewidth-12pt)/2\relax]{imagenes/ejemplos/reftree}
         \label{fig:reftree}
-    }\qquad
+    }
     \subfloat[Lolviz]{
         \centering
-        \includegraphics[width=\dimexpr(\linewidth-40pt)/2\relax]{imagenes/ejemplos/lolviz}
+        \includegraphics[width=\dimexpr(\linewidth-12pt)/2\relax]{imagenes/ejemplos/lolviz}
         % \vspace{38px}
         \label{fig:lolviz}
     }\\
     \subfloat[Aed Utilities]{
         \centering
-        \includesvg[width=\dimexpr(\linewidth-40pt)/2\relax]{imagenes/ejemplos/aed}
+        \includesvg[width=\dimexpr(\linewidth-12pt)/2\relax]{imagenes/ejemplos/aed}
         \label{fig:aed}
-    }\qquad
+    }
     \subfloat[Manim]{
         \centering
-        \includegraphics[width=\dimexpr(\linewidth-40pt)/2\relax]{imagenes/ejemplos/manim}
+        \includegraphics[width=\dimexpr(\linewidth-12pt)/2\relax]{imagenes/ejemplos/manim}
         \label{fig:manim}
     }
-    \caption{Ejemplos de visualizaciones generadas por las distintas herramientas. Obtenidas de \cite{Stanch2021}, \cite{Lolviz}, \cite{aed-utilities} y \cite{manim}, respectivamente.}
+    \caption[Ejemplos de las distintas herramientas.]{Ejemplos de visualizaciones generadas por las distintas herramientas. Obtenidas de \cite{Stanch2021}, \cite{Lolviz}, \cite{aed-utilities} y \cite{manim}, respectivamente.}
     \label{fig:comparacion}
 \end{figure}
 
@@ -51,9 +51,8 @@ Los Jupyter Notebooks son archivos interactivos que almacenan bloques de texto, 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{imagenes/notebook/notebook_components}
-  \caption{Arquitectura de Jupyter Notebooks. Obtenido de \cite{arq-notebook}.}
+  \caption[Arquitectura de Jupyter Notebooks]{Arquitectura de Jupyter Notebooks. Obtenido de \cite{arq-notebook}.}
   \label{fig:notebook_arq}
-  \centering
 \end{figure}
 
 Existen múltiples kernels, uno por cada lenguaje que soportan los Jupyter Notebooks, pero el más conocido es el kernel IPython que es el kernel del lenguaje Python. IPython además de ser un kernel de Jupyter Notebooks es un intérprete interactivo de Python, con funcionalidades como contenido multimedia y completado de comandos. Cuando se utiliza un notebook con el lenguaje Python, el servidor del notebook se comunica con este intérprete que es que se encarga de interpretar los bloques de código y responder con la salida generada cuando el servidor del notebook envía el request.
@@ -63,25 +62,21 @@ Para crear componentes interactivos en un Notebook de Python se utiliza la libre
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\textwidth]{imagenes/notebook/WidgetModelView}
-  \caption{Arquitectura de Jupyter Widgets. Obtenido de \cite{arq-widget}.}
+  \caption[Arquitectura de Jupyter Widgets]{Arquitectura de Jupyter Widgets. Obtenido de \cite{arq-widget}.}
   \label{fig:widget_arq}
-  \centering
 \end{figure}
 
-\section{ThreeJS}
+\section{D3}
 
-ThreeJS es una librería de JavaScript de gráficos en 3D que utiliza WebGL. WebGL es una API de JavaScript parte de los estándares web que permite el uso de la GPU para el rendering y el uso de shaders escritos en GLSL ES (OpenGL ES  Shading Language). La API de ThreeJS es de más alto nivel que WebGL, facilitando la programación de gráficos. Adicionalmente a lo que tiene WebGL implementa escenas, luces, materiales, sombras, entre otros~\cite{threejs-manual}.
+D3 es una librería de JavaScript para manipular documentas en función de datos. Esta librería permite manipular el DOM (Document Object Model) y aplicarle transformaciones según los datos. Permite usar las tecnologías estándar de la web para generar visualizaciones de buena calidad.
 
-Para renderizar gráficos en ThreeJS se deben definir lo siguientes elementos: escena, cámaras, geometrías, materiales, objetos, controles y renderers. Teniendo esto se deben agregar los objetos a ser mostrados al grafo de escena y la función de rendering debe ser agregada a un loop, para que se actualice la escena si hay cambios en las propiedades de los objetos. En la figura \ref{fig:threejs-structure} se puede ver un diagrama que muestra los elementos que componen una escena en ThreeJS.
+Es particularmente útil la capacidad de D3 de manipular elementos SVG (Scalable Vector Graphics) ---un lenguaje de markup para describir gráficos en dos dimensiones---. Esto permite generar animaciones en dos dimensiones de forma relativamente simple. Además esta técnica es bastante eficiente gracias a que los navegadores implementan motores muy eficientes para la renderización de elementos SVG.
+
+Para lograr esto D3 permite enlazar datos con elementos del DOM y definir los atributos de estos elementos como función de los datos. Además, cuando cambian los datos se puede hacer una transición suave de los elementos correspondientes a su nueva posición según la función definida anteriormente. La figura~\ref{fig:d3-ejemplo} muestra un ejemplo de una visualización generada con D3 que representa un conjunto de datos como una agrupación de círculos.
 
 \begin{figure}[h]
-  \centering
-  \includesvg[width=0.8\textwidth]{imagenes/threejs/threejs-structure}
-  \caption{Estructura de una escena en ThreeJS. Obtenido de \cite{threejs-manual}.}
-  \label{fig:threejs-structure}
-  \centering
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/d3/ejemplo.png}
+    \caption{Ejemplo de visualización generada con D3}
+    \label{fig:d3-ejemplo}
 \end{figure}
-
-Además, ThreeJS cuenta con un sistema de animaciones donde se pueden crear animaciones para objetos en el grafo de escena. Para esto primero se debe definir una AnimationAction que está compuesta por un KeyframeTrack y una cadena de texto con el nombre o UUID del objeto en el grafo de escena a ser animado y la propiedad de este a ser animada con el KeyframeTrack. El KeyframeTrack se genera a partir de un arreglo de los valores con la propiedad a ser modificada y un arreglo con los tiempos correspondientes a esos valores. Además, existen los AnimationMixers que permiten mezclar distintas animation actions sobre un mismo objeto en el grafo de escena. Lo que finalmente se usa para crear la animación es un AnimationClip, que se obtiene aplicando una AnimationAction a un AnimationMixer.
-
-Una ventaja de esta librería es que como usa WebGL que es un estándar web, los gráficos generados con esta librería pueden ser vistos por todos los usuarios con navegadores compatibles. Además, según caniuse.com el 99.97\% de los usuarios utiliza navegadores compatibles con WebGL.
