@@ -37,14 +37,9 @@
 %% Packages necesarios
 \RequirePackage{fontspec}
 \RequirePackage[left=1.75in, right=1.75in, top=1.25in, bottom=1.5in, paper=letterpaper]{geometry} % Margenes
-\RequirePackage{amsmath, amssymb, amsthm, graphicx} % Varios
 
 %% Formato
-\IfFileExists{parskip.sty}{%
-	\usepackage{parskip}
-}{% else
-    \setlength{\\indent}{0pt}
-    \setlength{\\skip}{6pt plus 2pt minus 1pt}}
+\usepackage{parskip}
 
 %% Caption antes de la tabla
 \RequirePackage{caption}
@@ -58,13 +53,8 @@
 \renewcommand{\appendixtocname}{Apéndices}
 
 \RequirePackage{csquotes} % Recommended when using babel
-\if@en
-	\RequirePackage{babel}
-\else
-	\RequirePackage[spanish, es-nolists, es-lcroman]{babel} % Lenguaje
-\fi
+\RequirePackage[spanish, es-nolists, es-lcroman]{babel} % Lenguaje
 \RequirePackage[pdfpagelabels,hidelinks]{hyperref} % Links y numeracion del PDF
-\RequirePackage{listings} % Codigo Fuente
 \RequirePackage{pgffor} % foreach
 
 %% Lenguaje
@@ -99,52 +89,6 @@
 	\fi
 	
 }
-{\vfill\null}
-
-%% Teoremas, proofs, etc
-\renewenvironment{proof}[1][\proofname] {\\\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\scshape\footnotesize#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
-
-\newtheoremstyle{miestilo}{\baselineskip}{3pt}{\itshape}{}{\bfseries}{}{.5em}{}
-\newtheoremstyle{miobs}{\baselineskip}{3pt}{}{}{\bfseries}{}{.5em}{}
-\if@swapnum
-	\swapnumbers
-\fi
-\theoremstyle{miestilo}
-\newtheorem{defn}{Definición}[chapter]
-\if@contnum
-	\if@en
-		\newtheorem{teo}[defn]{Theorem}
-		\newtheorem{cor}[defn]{Corollary}
-		\newtheorem{lema}[defn]{Lemma}
-		\newtheorem{prop}[defn]{Proposition}
-	\else
-		\newtheorem{teo}[defn]{Teorema}
-		\newtheorem{cor}[defn]{Corolario}
-		\newtheorem{lema}[defn]{Lema}
-		\newtheorem{prop}[defn]{Proposición}
-	\fi
-\else
-	\if@en
-		\newtheorem{teo}{Theorem}[chapter]
-		\newtheorem{cor}{Corollary}[chapter]
-		\newtheorem{lema}{Lemma}[chapter]
-		\newtheorem{prop}{Proposition}[chapter]
-	\else
-		\newtheorem{teo}{Teorema}[chapter]
-		\newtheorem{cor}{Corolario}[chapter]
-		\newtheorem{lema}{Lema}[chapter]
-		\newtheorem{prop}{Proposición}[chapter]
-	\fi
-\fi
-\theoremstyle{miobs}
-
-\if@en
-	\newtheorem*{ej}{Example}
-	\newtheorem*{obs}{Observation}
-\else
-	\newtheorem*{ej}{Ejemplo}
-	\newtheorem*{obs}{Observación}
-\fi
 
 %% Spaced Small Caps and All Caps (for fancy cover page)
 \newcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace = 8}\scshape#1}}
