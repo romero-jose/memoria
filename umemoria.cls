@@ -57,7 +57,7 @@
 \renewcommand{\appendixpagename}{Apéndices}
 \renewcommand{\appendixtocname}{Apéndices}
 
-
+\RequirePackage{csquotes} % Recommended when using babel
 \if@en
 	\RequirePackage{babel}
 \else
