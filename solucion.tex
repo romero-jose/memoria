@@ -36,6 +36,8 @@ Los datos asociados a cada nodo son: el índice de la lista a la que pertenece, 
 
 Teniendo la lista, usando D3js se asocian los nodos de la visualización a cada elemento en esta lista usando el identificador del elemento. La animación tiene dos fases: primero se anima la actualización de los nodos existenes y luego se anima la entrada de nuevos nodos.
 
+En la primera fase se transiciona con una animación desde la posición anterior de los nodos a la posición dada por los datos actualizadas asociados a cada nodo y se actualizan los valores que hayan cambiado. En la segunda fase se hace un \textit{fade in} de los nuevos nodos en las posiciones correspondientes. Es importante el orden de estas fases porque si se hace en otro orden los nodos entrantes podrían aparecer detras de nodos preexistentes.
+
 \section{Back--end}
 
 El backend se encarga de proveer la instrumentación necesaria para que el usuario pueda generar visualizaciones de las estructuras de datos que ha implementado. Usando esta instrumentación mantiene un registro de las operaciones primitivas realizadas sobre la estructura de datos y cuando el usuario quiere visualizar el resultado serializa este registro y lo envia al \textit{front--end}.
