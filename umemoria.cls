@@ -58,7 +58,7 @@
 \renewcommand{\appendixtocname}{Apéndices}
 
 \RequirePackage{csquotes} % Recommended when using babel
-\RequirePackage[spanish, es-nolists, es-lcroman]{babel} % Lenguaje
+\RequirePackage[spanish,mexico,es-nolists]{babel} % Lenguaje
 \RequirePackage[pdfpagelabels,hidelinks]{hyperref} % Links y numeracion del PDF
 \RequirePackage{pgffor} % foreach
 
