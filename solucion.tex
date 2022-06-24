@@ -101,3 +101,5 @@ logger.visualize()
 \end{listing}
 
 Cuando se aplica el decorador \textit{container} a una clase, se crea un Logger asociado a cada instancia de esa clase y para todos los métodos de esa clase se utiliza ese logger como \textit{context manager} para que las operaciones sobre la estructura de datos queden registrada en el logger del contenedor.
+
+Esta parte originalmente se implementó usando herencia en vez de decoradores, pero se cambió debido a que de esta manera eran menores los cambios que el usuario debía hacer a su programa para permitirle usar la herramienta.
