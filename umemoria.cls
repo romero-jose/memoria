@@ -54,8 +54,8 @@
 
 % Redefines
 \renewcommand{\appendixname}{Anexo}
-\renewcommand{\appendixpagename}{Apéndices}
-\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Anexos}
+\renewcommand{\appendixtocname}{Anexos}
 
 \RequirePackage{csquotes} % Recommended when using babel
 \RequirePackage[spanish,mexico,es-nolists]{babel} % Lenguaje

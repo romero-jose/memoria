@@ -1,0 +1,110 @@
+\setlist[enumerate,1]{labelindent=0pt, leftmargin=*}
+\pagestyle{empty}
+
+\newcolumntype{P}{>{\centering\arraybackslash}p{0.75cm}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}m{0.2\textwidth}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}m{0.2\textwidth}}
+
+\newcommand{\usetbl}{%
+  \begin{tabular}{@{}|*5{P|}@{}}
+    \hline
+    1 & 2 & 3 & 4 & 5 \\
+    \hline
+  \end{tabular}
+}
+
+\newcommand\prop[1]{%
+  \item
+  \parbox[t]{0.5\textwidth}{#1}%
+  \hspace{1cm}
+  \parbox[t]{0.5\textwidth}{\usetbl}%
+}
+
+\section*{Escala de Usabilidad de Sistemas (SUS)}
+
+\vspace*{0.5cm}
+Por favor seleccione de cada uno de los enunciados la opción que mejor describa su experiencia con la herramienta. Un puntaje de 1 significa que usted se encuentra totalmente en desacuerdo con el enunciado, mientras que un puntaje en 5 significa que está totalmente de acuerdo, un puntaje de 3 significaría que usted se encuentra neutral con el enunciado.
+
+\vspace*{0.25cm}
+
+\hspace*{0.5\textwidth}%
+\hspace*{1cm}
+\begin{tabularx}{0.5\textwidth}{@{}LR@{}}
+\textbf{Totalmente} & \textbf{Totalmente} \\
+\textbf{en desacuerdo} & \textbf{de acuerdo} \\
+\end{tabularx}
+
+\begin{enumerate}
+\prop{Me gustaría usar esta herramienta frecuentemente}
+
+\prop{Considero que esta herramienta es innecesariamente compleja}
+
+\prop{Considero que la herramienta es fácil de usar}
+
+\prop{Considero necesario el apoyo de personal experto para poder utilizar la herramienta}
+
+\prop{Considero que las funciones de la herramienta están bien integradas}
+
+\prop{Considero que la herramienta presenta muchas contradicciones}
+
+\prop{Imagino que la mayoría de las personas aprenderían a usar esta herramienta rápidamente}
+
+\prop{Considero que el uso de esta herramienta es tedioso}
+
+\prop{Me sentí muy confiado al usar la herramienta}
+
+\prop{Necesité saber bastantes cosas antes de poder empezar a usar la herramienta}
+
+\end{enumerate}
+
+\newpage
+
+\section*{Preguntas abiertas}
+
+\vspace*{1cm}
+
+\textbf{¿Qué te gustó de la herramienta? ¿Por qué?}
+
+\vspace*{3cm}
+
+\textbf{¿Qué no te gustó de la herramienta? ¿Por qué?}
+
+\vspace*{3cm}
+
+\textbf{¿Cómo podría ser mejor la herramienta?}
+
+\vspace*{3cm}
+
+\newpage
+\section*{Caracterización}
+
+\begin{enumerate}
+
+\item{Indica tu edad}
+    \begin{itemize}
+        \item[\framebox(10,10){ }]{18--19}
+        \item[\framebox(10,10){ }]{20--21}
+        \item[\framebox(10,10){ }]{22--23}
+        \item[\framebox(10,10){ }]{24--25}
+        \item[\framebox(10,10){ }]{26--27}
+        \item[\framebox(10,10){ }]{28--29}
+        \item[\framebox(10,10){ }]{30 o más}
+    \end{itemize}
+
+\item{Indica tu género}
+    \begin{itemize}
+        \item[\framebox(10,10){ }]{Masculino}
+        \item[\framebox(10,10){ }]{Femenino}
+        \item[\framebox(10,10){ }]{Otro, }
+        \item[\framebox(10,10){ }]{Prefiero no responder}
+    \end{itemize}
+
+\item{Indica tu avance curricular. Responde según el mayor número asociado a los cursos que hayas cursado o estés cursando de la siguiente lista}
+    \begin{itemize}
+        \item[\framebox(10,10){ }] Introducción a la programación
+        \item[\framebox(10,10){ }] Algoritmos y estructuras de Datos
+        \item[\framebox(10,10){ }] Diseño y análisis de algoritmos
+        \item[\framebox(10,10){ }] Lenguajes de programación
+        \item[\framebox(10,10){ }] Proyecto de software
+    \end{itemize}
+\end{enumerate}

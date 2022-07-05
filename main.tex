@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{subfig}
 \usepackage{svg}
+\usepackage{pdfpages}
 \usepackage[]{biblatex}
 
 \renewcommand{\listingscaption}{Código}
@@ -127,5 +128,8 @@ Una dedicatoria corta.
 % opcional ...
 \begin{appendices}
 % \input{anexoA.tex}
+\chapter{Cuestionario}
+\label{anexo:cuestionario}
+\includepdf[pages=1-3,pagecommand=\thispagestyle{plain}]{sus/main.pdf}
 \end{appendices}
 \end{document}

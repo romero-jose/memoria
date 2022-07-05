@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage[spanish,mexico,es-nolists]{babel}
+\usepackage[left=3cm, right=3cm]{geometry}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{array,tabularx}
+\usepackage{parskip}
+\usepackage{microtype}
+
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\setmainfont{Minion 3}[
+  Numbers={Proportional,Lining},
+  UprightFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption},
+      {Size={9-14},Font=*Regular},
+      {Size={14.0-24},Font=*Subhead},
+      {Size={24-},Font=*Display}
+  }},
+  ItalicFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption Italic},
+      {Size={9-14},Font=*Italic},
+      {Size={14.0-24},Font=*Subhead Italic},
+      {Size={24-},Font=*Display Italic}
+  }},
+  BoldFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption Bold},
+      {Size={9-14},Font=*Bold},
+      {Size={14.0-24},Font=*Subhead Bold},
+      {Size={24-},Font=*Display Bold}
+  }},
+  BoldItalicFeatures={
+    SizeFeatures={
+      {Size={-9},Font=*Caption Bold Italic},
+      {Size={9-14},Font=*Bold Italic},
+      {Size={14.0-24},Font=*Subhead Bold Italic},
+      {Size={24-},Font=*Display Bold Italic}
+  }},
+  SmallCapsFeatures = {
+    Letters = SmallCaps,
+    LetterSpace = 10,
+  }]
+\setsansfont[]{Helvetica Neue}
+\setmonofont[]{JetBrains Mono}
+
+\begin{document}
+
+\input{sus.tex}
+
+\end{document}
