@@ -36,9 +36,13 @@ Las operaciones primitivas son las siguientes:
     \item{\makebox[3.5cm]{SetNext(id, next)\hfill}}: Asignar el siguiente de un nodo
     \item{\makebox[3.5cm]{GetNext(id)\hfill}}: Obtener el siguiente de un nodo
 \end{itemize}
-donde \textit{id} es el identificador único de cada nodo, \textit{value} es una cadena de texto que representa el valor del nodo y \textit{next} es el identificador del siguiente nodo en la lista enlazada.
+donde \textit{id} es el identificador único de cada nodo, \textit{value} es una cadena de texto que representa el valor del nodo y \textit{next} es el identificador del siguiente nodo en la lista enlazada o es \textit{null}.
 
 Los metadatos de la visualización son configuraciones de la visualización, por ejemplo, la duración de las transiciones y la duración de los fade-ins y fade-outs. En cambio, los metadatos de las operaciones contienen información que solo es relevante para esa operación, por ejemplo, si se debe animar o no esa operación y el código fuente que dio origen a la operación.
+
+Este modelo en realidad representa un grafo dirigido con un grado máximo de 1. Este nivel de flexibilidad es necesario porque como la representación se genera a partir de un programa escrito por el usuario, este puede contener errores que hagan que la estructura de datos implementada no sea necesariamente una lista enlazada. Por ejemplo, por ejemplo, el usuario puede crear nodos que no estén conectados entre sí y puede crear ciclos.
+
+Para una versión futura de la herramienta se podría cambiar esta representación para que represente grafos sin un grado máximo. Esto permitiría representar estructuras de datos tales como grafos, árboles y listas enlazadas. Se consideró utilizar esta representación desde un principio, pero no se hizo porque dificultaba la generación de la visualización para la estructura de datos abordada.
 
 \section{Front-end}
 
