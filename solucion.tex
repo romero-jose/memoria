@@ -24,8 +24,11 @@ En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la a
 
 \section{Modelo de datos}
 
-El modelo consiste en una lista de operaciones y metadatos de las operaciones registradas. Cada operación está compuesta por una operación primitiva y metadatos de la operación. La metadatos de la operación consiste en sí la operación se debe animar o no y el código fuente que dio origen a esa operación. La operación primitiva puede ser:
+Cuando un usuario quiere generar una visualización el back-end le envía al front-end una representación de las operaciones realizadas sobre la estructura de datos. Para esto se diseñó un modelo que representa las operaciones primitivas que se pueden realizar sobre las listas enlazadas. Además, el modelo contiene metadatos que son útiles para generar la visualización.
 
+El modelo que se utiliza para generar la visualización consiste en una lista de operaciones y metadatos de la visualización. Cada operación consiste en una operación primitiva y metadatos de la operación.
+
+Las operaciones primitivas son las siguientes:
 \begin{itemize}
     \item{\makebox[3.5cm]{Init(id, value, next)\hfill}}: Inicializar un nodo
     \item{\makebox[3.5cm]{SetValue(id, value)\hfill}}: Asignar el valor de un nodo
@@ -33,6 +36,9 @@ El modelo consiste en una lista de operaciones y metadatos de las operaciones re
     \item{\makebox[3.5cm]{SetNext(id, next)\hfill}}: Asignar el siguiente de un nodo
     \item{\makebox[3.5cm]{GetNext(id)\hfill}}: Obtener el siguiente de un nodo
 \end{itemize}
+donde \textit{id} es el identificador único de cada nodo, \textit{value} es una cadena de texto que representa el valor del nodo y \textit{next} es el identificador del siguiente nodo en la lista enlazada.
+
+Los metadatos de la visualización son configuraciones de la visualización, por ejemplo, la duración de las transiciones y la duración de los fade-ins y fade-outs. En cambio, los metadatos de las operaciones contienen información que solo es relevante para esa operación, por ejemplo, si se debe animar o no esa operación y el código fuente que dio origen a la operación.
 
 \section{Front-end}
 
