@@ -8,9 +8,19 @@ La librería le permite al usuario implementar una estructura de datos y agregan
 
 Para permitir esto la librería está compuesta por dos partes: una parte implementada en Python y una parte implementada en JavaScript.
 
+\begin{figure}[htb]
+    \centering
+    \includesvg[width=
+    \textwidth]{imagenes/diagramas/arquitectura.svg}
+    \caption{Diagrama de la arquitectura}
+    \label{fig:diagrama-arq}
+\end{figure}
+
 La parte implementada en Python, que correspondería al \textit{back--end}, define la instrumentación para captar las operaciones realizadas sobre la estructura de datos. Se encarga de mantener un registro de todas las operaciones que se realizan sobre la estructura de datos. Este registro se mantiene utilizando una representación de las operaciones primitivas sobre la estructura de datos. Teniendo esto, cuando un usuario quiere generar la visualización este registro de operaciones es serializado y enviado al \textit{front--end} usando la librería IPython Widgets.
 
 La parte implementada en TypeScript, el \textit{front--end} de la librería, recibe el modelo serializado, deserializa el modelo y genera la visualización a partir de este. Para generar la visualización utiliza la librería D3, que permite manipular el DOM (Document Object Model) en función de los datos del modelo.
+
+En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la arquitectura de la solución. El usuario interactúa con la herramienta usando el navegador, donde corre el front-end. Este se comunica usando HTTP y Websockets con el servidor de Notebooks, que se encarga de interactuar con el archivo del Notebook y se comunica con el kernel usando ZeroMQ ---una librería de comunicación asíncrona orientada a mensajes---. El kernel contiene el intérprete de Python y es donde corre el back-end de la herramienta.
 
 \section{Modelo de datos}
 
