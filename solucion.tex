@@ -2,25 +2,33 @@
 
 \section{Arquitectura}
 
-La solución es una librería de Python para generar visualizaciones animadas de estructuras de datos y las operaciones que se realizan sobre estas, que pueda ser usada en un Jupyter Notebook.
+La solución es una librería de Python para generar visualizaciones animadas de estructuras de datos y las operaciones que se realizan sobre estas, que pueda ser usada en Jupyter Notebooks.
 
-La librería le permite al usuario implementar una estructura de datos y agregando la instrumentación provista por la librería le permite generar una visualización animada que muestra las operaciones que se realizaron sobre esa estructura de datos.
+La librería le permite al usuario implementar una estructura de datos y, agregando la instrumentación provista por la librería, le permite generar una visualización animada de las operaciones que se realizaron sobre la estructura.
 
-Para permitir esto la librería está compuesta por dos partes: una parte implementada en Python y una parte implementada en JavaScript.
+Para permitir esto la librería está compuesta por dos partes: el \textit{back-end} y el \textit{front-end}. Estas dos partes se comunican entre sí utilizando un modelo de datos común que cada una de las partes sabe serializar y deserializar.
 
 \begin{figure}[htb]
     \centering
-    \includesvg[width=
-    \textwidth]{imagenes/diagramas/arquitectura.svg}
+    \includesvg[width=\textwidth]{imagenes/diagramas/arquitectura.svg}
     \caption{Diagrama de la arquitectura}
     \label{fig:diagrama-arq}
 \end{figure}
 
-La parte implementada en Python, que correspondería al \textit{back-end}, define la instrumentación para captar las operaciones realizadas sobre la estructura de datos. Se encarga de mantener un registro de todas las operaciones que se realizan sobre la estructura de datos. Este registro se mantiene utilizando una representación de las operaciones primitivas sobre la estructura de datos. Teniendo esto, cuando un usuario quiere generar la visualización este registro de operaciones es serializado y enviado al \textit{front-end} usando la librería IPython Widgets.
+El \textit{back-end}, implementado en Python, define la instrumentación para capturar las operaciones realizadas sobre la estructura de datos. Se encarga de mantener un registro de todas las operaciones que se realizan sobre esta. Este registro se mantiene utilizando una representación de las operaciones primitivas sobre la estructura de datos. Teniendo esto, cuando un usuario quiere generar la visualización, este registro de operaciones es serializado y enviado al \textit{front-end}. Esto se logra utilizando usando la librería IPython Widgets en combinación con el serializador definido para el modelo.
 
-La parte implementada en TypeScript, el \textit{front-end} de la librería, recibe el modelo serializado, deserializa el modelo y genera la visualización a partir de este. Para generar la visualización utiliza la librería D3, que permite manipular el DOM (Document Object Model) en función de los datos del modelo.
+El \textit{front-end}, implementado en TypeScript, recibe el modelo serializado, deserializa el modelo y genera la visualización a partir de este. Para generar la visualización utiliza la librería D3js, que permite manipular el DOM (Document Object Model) en función de los datos del modelo.
 
-En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la arquitectura de la solución. El usuario interactúa con la herramienta usando el navegador, donde corre el front-end. Este se comunica usando HTTP y Websockets con el servidor de Notebooks, que se encarga de interactuar con el archivo del Notebook y se comunica con el kernel usando ZeroMQ ---una librería de comunicación asíncrona orientada a mensajes---. El kernel contiene el intérprete de Python y es donde corre el back-end de la herramienta.
+La figura~\ref{fig:flujo-informacion} es un diagrama que muestra el flujo de la información cuando se utiliza la herramienta. Primero el usuario implementa y usa la estructura de datos en el notebook, después a partir de esto se genera un registro en el back-end, luego este registro se sincroniza con el front-end y finalmente este último genera la animación en el navegador.
+
+\begin{figure}[htb]
+    \centering
+    \includesvg[pretex=\footnotesize,width=\textwidth]{imagenes/diagramas/diagrama-de-flujo.svg}
+    \caption{Flujo de la información}
+    \label{fig:flujo-informacion}
+\end{figure}
+
+En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la arquitectura física de la solución. El usuario interactúa con la herramienta usando el navegador, donde corre el front-end. Este se comunica usando HTTP y Websockets con el servidor de Notebooks, que se encarga de interactuar con el archivo del Notebook y se comunica con el kernel usando ZeroMQ ---una librería de comunicación asíncrona orientada a mensajes---. El kernel contiene el intérprete de Python y es donde corre el back-end de la herramienta.
 
 \section{Modelo de datos}
 
@@ -39,6 +47,96 @@ Las operaciones primitivas son las siguientes:
 donde \textit{id} es el identificador único de cada nodo, \textit{value} es una cadena de texto que representa el valor del nodo y \textit{next} es el identificador del siguiente nodo en la lista enlazada o es \textit{null}.
 
 Los metadatos de la visualización son configuraciones de la visualización, por ejemplo, la duración de las transiciones y la duración de los fade-ins y fade-outs. En cambio, los metadatos de las operaciones contienen información que solo es relevante para esa operación, por ejemplo, si se debe animar o no esa operación y el código fuente que dio origen a la operación.
+
+En la figura~\ref{fig:codigo-vs-modelo} se puede ver un ejemplo de código fuente que usa la herramienta, una captura de la animación generada a partir de ese código y el modelo generado a partir del código que se usa para crear la visualización.
+
+\begin{figure}[p]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{minted}[linenos=false,fontsize=\scriptsize]{python}
+@node('value', 'next')
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+@container(lines_before=0, lines_after=0)
+class List:
+    def __init__(self):
+        self.node = None
+        
+    def append(self, value):
+        node = self.node
+        if node is None:
+            self.node = Node(value, None)
+            return
+
+        next = node.next
+        while next is not None:
+            node = next
+            next = next.next
+        node.next = Node(value, None)
+
+l = List()
+l.append(1)
+l.append(2)
+l.visualize()
+        \end{minted}
+        \caption{Código}
+        \label{fig:codigo-vs-modelo:codigo}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/codigo-imagen-modelo.png}
+        \caption{Captura de la visualización}
+        \label{fig:codigo-vs-modelo:imagen}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \begin{minted}[linenos=false,fontsize=\scriptsize]{json}
+{
+  "operations": [
+    {
+      "operation": { "operation": "init", "id": 6, "value": "1", "next": null },
+      "metadata": {
+        "animate": true,
+        "source": ["l.append(1)\n", "> 15     self.node = Node(value, None)\n"]
+      }
+    },
+    {
+      "operation": { "operation": "get_next", "id": 6 },
+      "metadata": {
+        "animate": true,
+        "source": ["l.append(2)\n", "> 18 next = node.next\n"]
+      }
+    },
+    {
+      "operation": { "operation": "init", "id": 7, "value": "2", "next": null },
+      "metadata": {
+        "animate": true,
+        "source": ["l.append(2)\n", "> 22 node.next = Node(value, None)\n"]
+      }
+    },
+    {
+      "operation": { "operation": "set_next", "id": 6, "next": 7 },
+      "metadata": {
+        "animate": true,
+        "source": ["l.append(2)\n", "> 22 node.next = Node(value, None)\n"]
+      }
+    }
+  ],
+  "metadata": { "transition_duration": 1000, "fade_in_duration": 1000 }
+}
+                      
+        \end{minted}
+        \caption{Modelo generado a partir del código}
+        \label{fig:codigo-vs-modelo:modelo}
+    \end{subfigure}
+    \caption{Código, captura de la visualización y modelo}
+    \label{fig:codigo-vs-modelo}
+\end{figure}
 
 Este modelo en realidad representa un grafo dirigido con un grado máximo de 1. Este nivel de flexibilidad es necesario porque como la representación se genera a partir de un programa escrito por el usuario, este puede contener errores que hagan que la estructura de datos implementada no sea necesariamente una lista enlazada. Por ejemplo, por ejemplo, el usuario puede crear nodos que no estén conectados entre sí y puede crear ciclos.
 
