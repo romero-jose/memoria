@@ -126,11 +126,17 @@ Una dedicatoria corta.
     heading=bibintoc,
 ]
 
-% opcional ...
 \begin{appendices}
+
 % \input{anexoA.tex}
+
 \chapter{Cuestionario}
 \label{anexo:cuestionario}
 \includepdf[pages=1-3,pagecommand=\thispagestyle{plain}]{sus/sus.pdf}
+
+\chapter{Consentimiento informado}
+\label{anexo:consentimiento}
+\includepdf[pages=1-3]{consentimiento/ConsentimientoinformadoSipiran.pdf}
+
 \end{appendices}
 \end{document}
