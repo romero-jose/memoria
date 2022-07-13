@@ -90,6 +90,23 @@
 \maketitle
 
 \begin{resumen}
+Las estructuras de datos son uno de los temas más importantes en las Ciencias de la Computación.
+Por el mismo motivo son parte de los contenidos básicos que se enseñan en esta disciplina.
+Frecuentemente en la docencia se utilizan diagramas de las estructuras de datos como un apoyo al aprendizaje.
+Sin embargo, estos diagramas son estáticos y no capturan su naturaleza dinámica.
+Si bien, si existen visualizaciones animadas de estructuras de datos, estas son poco flexibles y están separadas del ambiente donde se implementan las estructuras de datos.
+
+En particular, para el curso CC3001 del Departamento de Ciencias de la Computación de la Universidad de Chile se desarrolló previamente una herramienta que genera visualizaciones estáticas y existe la necesidad de una herramienta similar, pero que permita generar visualizaciones animadas.
+
+Por lo anterior sería útil contar con una herramienta que permita generar visualizaciones animadas de estructuras de datos que esté incorporada en el mismo ambiente de desarrollo.
+De esta manera el usuario puede visualizar la estructura de datos al mismo tiempo que la implementa, incluso permitiéndole ver cuando su implementación tiene errores.
+
+Para satisfacer esta necesidad se creó \textit{dsvisualizer}, una herramienta para generar visualizaciones animadas de estructuras de datos implementadas en Python.
+Le permite al usuario generar una animación de su propia implementación minimizando la intervención del usuario a su código.
+
+Para lograr esto \textit{dsvisualizer} tiene un \textit{back-end} y un \textit{front-end}. El \textit{back-end}, implementado en Python, captura las operaciones sobre la estructura a visualizar y genera un modelo de estas que se lo envía al \textit{front-end}. Este, implementado en TypeScript, recibe el modelo desde el \textit{back-end} y a partir de este último genera la visualización animada, utilizando la librería de animación D3js.
+
+Después de desarrollar esta herramienta se realizaron pruebas con estudiantes de la Facultad de Ciencias Físicas y Matemáticas para evaluarla.
 \end{resumen}
 
 % opcional: incluir para tesis en inglés;
