@@ -142,20 +142,6 @@ Este modelo en realidad representa un grafo dirigido con un grado máximo de 1. 
 
 Para una versión futura de la herramienta se podría cambiar esta representación para que represente grafos sin un grado máximo. Esto permitiría representar estructuras de datos tales como grafos, árboles y listas enlazadas. Se consideró utilizar esta representación desde un principio, pero no se hizo porque dificultaba la generación de la visualización para la estructura de datos abordada.
 
-\section{Front-end}
-
-Como la librería registra las operaciones primitivas no es trivial generar una visualización a partir del modelo, ya que las operaciones registradas no necesariamente representan una operación estándar sobre listas. De hecho estas operaciones definen un grafo dirigido con un grado máximo de 1. Esta representación resulta útil porque permite representar implementaciones incorrectas de una lista enlazada.
-
-Para visualizar por separado las componentes conexas del grafo se deben encontrar los subgrafos conexos a partir de esta representación. En la literatura existen varios algoritmos para resolver este problema, pero por simplicidad se decidió acotar la librería al caso donde el grafo es acíclico, es decir, un bosque. De esta manera, todos los nodos que no tienen ningún arco que apunte a ellos son puntos de entrada. Además, todos estos puntos de entrada definen una lista conexa que no tiene conexiones con otras listas. Entonces, podemos visualizar cada una de estas componentes conexas como una lista.
-
-Para generar la animación se visualiza en orden cada operación primitiva que se obtiene del \textit{front-end} (animándola o no dependiendo de los metadatos de la operación). Para cada operación primitiva primero se obtienen las listas conexas usando el algoritmo descrito previamente, luego se genera una lista donde cada elemento tiene la información asociada a un nodo y finalmente usando D3js se anima la transición desde la versión previa de esta lista hasta la actual.
-
-Los datos asociados a cada nodo son: el índice de la lista a la que pertenece, el largo de la lista a la que pertenece, su índice dentro de la lista a la que pertenece, su identificador único y su valor.
-
-Teniendo la lista, usando D3js se asocian los nodos de la visualización a cada elemento en esta lista usando el identificador del elemento. La animación tiene dos fases: primero se anima la actualización de los nodos existentes y luego se anima la entrada de nuevos nodos.
-
-En la primera fase se transiciona con una animación desde la posición anterior de los nodos a la posición dada por los datos actualizados asociados a cada nodo y se actualizan los valores que hayan cambiado. En la segunda fase se hace un \textit{fade in} de los nuevos nodos en las posiciones correspondientes. Es importante el orden de estas fases porque si se hace en otro orden los nodos entrantes podrían aparecer detras de nodos preexistentes.
-
 \section{Back-end}
 
 El back-end se encarga de proveer la instrumentación necesaria para que el usuario pueda generar visualizaciones de las estructuras de datos que ha implementado. Usando esta instrumentación mantiene un registro de las operaciones primitivas realizadas sobre la estructura de datos y cuando el usuario quiere visualizar el resultado serializa este registro y lo envía al \textit{front-end}.
@@ -221,3 +207,17 @@ logger.visualize()
 Cuando se aplica el decorador \textit{container} a una clase, se crea un Logger asociado a cada instancia de esa clase y para todos los métodos de esa clase se utiliza ese logger como \textit{context manager} para que las operaciones sobre la estructura de datos queden registradas en el logger del contenedor.
 
 Esta parte originalmente se implementó usando herencia en vez de decoradores, pero se cambió debido a que de esta manera eran menores los cambios que el usuario debía hacer a su programa para permitirle usar la herramienta.
+
+\section{Front-end}
+
+Como la librería registra las operaciones primitivas no es trivial generar una visualización a partir del modelo, ya que las operaciones registradas no necesariamente representan una operación estándar sobre listas. De hecho estas operaciones definen un grafo dirigido con un grado máximo de 1. Esta representación resulta útil porque permite representar implementaciones incorrectas de una lista enlazada.
+
+Para visualizar por separado las componentes conexas del grafo se deben encontrar los subgrafos conexos a partir de esta representación. En la literatura existen varios algoritmos para resolver este problema, pero por simplicidad se decidió acotar la librería al caso donde el grafo es acíclico, es decir, un bosque. De esta manera, todos los nodos que no tienen ningún arco que apunte a ellos son puntos de entrada. Además, todos estos puntos de entrada definen una lista conexa que no tiene conexiones con otras listas. Entonces, podemos visualizar cada una de estas componentes conexas como una lista.
+
+Para generar la animación se visualiza en orden cada operación primitiva que se obtiene del \textit{front-end} (animándola o no dependiendo de los metadatos de la operación). Para cada operación primitiva primero se obtienen las listas conexas usando el algoritmo descrito previamente, luego se genera una lista donde cada elemento tiene la información asociada a un nodo y finalmente usando D3js se anima la transición desde la versión previa de esta lista hasta la actual.
+
+Los datos asociados a cada nodo son: el índice de la lista a la que pertenece, el largo de la lista a la que pertenece, su índice dentro de la lista a la que pertenece, su identificador único y su valor.
+
+Teniendo la lista, usando D3js se asocian los nodos de la visualización a cada elemento en esta lista usando el identificador del elemento. La animación tiene dos fases: primero se anima la actualización de los nodos existentes y luego se anima la entrada de nuevos nodos.
+
+En la primera fase se transiciona con una animación desde la posición anterior de los nodos a la posición dada por los datos actualizados asociados a cada nodo y se actualizan los valores que hayan cambiado. En la segunda fase se hace un \textit{fade in} de los nuevos nodos en las posiciones correspondientes. Es importante el orden de estas fases porque si se hace en otro orden los nodos entrantes podrían aparecer detras de nodos preexistentes.
