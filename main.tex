@@ -54,6 +54,8 @@
 \setsansfont[]{Helvetica Neue}
 \setmonofont[]{JetBrains Mono}
 
+\AtBeginEnvironment{tabular}{\addfontfeature{Numbers={Uppercase,Monospaced}}}
+
 \depto{Departamento de Ciencias de la Computación}
 \author{José Luis Romero Munizaga}
 \title{Librería de Visualización de Estructuras de Datos}
@@ -131,7 +133,7 @@ Una dedicatoria corta.
 \end{thanks}
 
 \tableofcontents
-% \listoftables % opcional
+\listoftables % opcional
 \listoffigures % opcional
 
 \mainmatter
@@ -161,6 +163,8 @@ Una dedicatoria corta.
 \chapter{Consentimiento informado}
 \label{anexo:consentimiento}
 \includepdf[pages=1-3]{consentimiento/ConsentimientoinformadoSipiran.pdf}
+
+\input{anexo_comentarios}
 
 \end{appendices}
 \end{document}

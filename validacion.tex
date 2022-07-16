@@ -18,8 +18,31 @@ En la caracterización se preguntó por edad, género y avance curricular. La ed
 
 Se preguntó por edad y género porque en~\cite{evaluation-of-sus} se observa cierta relación entre estos factores y el puntaje obtenido en SUS. Se preguntó por avance curricular porque se cree que puede haber una relación entre el nivel de conocimiento en programación o en ciencias de la computación y la facilidad para usar la herramienta.
 
-En total participaron 12 estudiantes. De estos, 10 se identificaron como hombres, 1 como mujer y 1 como otro. La edad promedio de los participantes fue 21.5 años. En cuanto al avance curricular, 9 de los estudiantes marcaron 2, lo que significa que han cursado los cursos de la lista hasta Algoritmos y Estructuras de Datos. Utilizando el sistema de puntuación de SUS se obtuvo un puntaje promedio de 82.5, con una desviación estándar de 5.8. Este puntaje se encuentra entre los percentiles 90 y 95 usando la escala de~\cite{quantifying-the-user-experience}.
+En total participaron 12 estudiantes. De estos, 10 se identificaron como hombres, 1 como mujer y 1 como otro. La edad promedio de los participantes fue 21.5 años. En cuanto al avance curricular, 9 de los estudiantes marcaron 2, lo que significa que han cursado los cursos de la lista hasta Algoritmos y Estructuras de Datos. En la tabla~\ref{tab:respuestas} se pueden ver las respuestas de los participantes y en la última fila el promedio para cada columna. Cómo el cuestionario SUS alterna preguntas positivas con negativas, para facilitar la compresión de los resultados se presentan las respuestas de forma que los puntajes están en una escala entre 0 y 4, donde 0 es lo peor y 4 es lo mejor. Utilizando el sistema de puntuación de SUS se obtuvo un puntaje promedio de 90.0, con una desviación estándar de 7.6. Este puntaje se encuentra en el percentil 99.8 usando la escala de~\cite{quantifying-the-user-experience}.
 
-En cuanto a las preguntas abiertas. En la primera pregunta, \textit{¿Qué te gustó de la herramienta? ¿Por qué?}, las respuestas más frecuentes mencionaban que la herramienta muestra el código fuente que dio origen a la operación y que solo requiere agregar dos líneas de código para usarla. En la segunda pregunta, \textit{¿Qué no te gustó de la herramienta? ¿Por qué?}, no hubo respuestas significativamente más comunes que otras. Sin embargo, una respuesta que se repitió dos veces tiene que ver con que al eliminar un nodo de la lista este visualmente se mueve hacia abajo de la lista original en vez de desaparecer. En la tercera pregunta, \textit{¿Cómo podría ser mejor la herramienta?}, la respuesta más frecuenta estaba relacionada permitir visualizar otras estructuras de datos que no sean listas enlazadas.
+\begin{table}[hbt]
+    \caption[Matriz de respuestas]{Matriz de respuestas, normalizando los puntajes de las preguntas entre 0 y 4 donde mayor es mejor.}
+    \label{tab:respuestas}
+    \centering
+    \begin{tabular}{@{}ccccccccccccr@{}}
+    \toprule
+    Avance & Edad & P1  & P2  & P3  & P4  & P5  & P6  & P7  & P8  & P9  & P10 & Puntaje \\ \midrule
+    2      & 20   & 4   & 4   & 3   & 4   & 4   & 4   & 3   & 4   & 3   & 2   & 87.5    \\
+    2      & 22   & 4   & 4   & 4   & 3   & 4   & 4   & 4   & 4   & 4   & 3   & 95.0    \\
+    5      & 24   & 1   & 4   & 4   & 4   & 2   & 4   & 4   & 4   & 3   & 1   & 77.5    \\
+    4      & 22   & 1   & 4   & 4   & 1   & 4   & 4   & 4   & 4   & 2   & 3   & 77.5    \\
+    2      & 20   & 3   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 3   & 1   & 87.5    \\
+    2      & 22   & 4   & 4   & 3   & 3   & 3   & 4   & 3   & 3   & 3   & 4   & 85.0    \\
+    2      & 22   & 1   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 92.5    \\
+    2      & 22   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 100.0   \\
+    2      & 20   & 4   & 4   & 4   & 3   & 3   & 4   & 4   & 3   & 3   & 4   & 90.0    \\
+    2      & 20   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 100.0   \\
+    2      & 20   & 3   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 4   & 97.5    \\
+    5      & 24   & 4   & 3   & 4   & 4   & 4   & 4   & 3   & 4   & 3   & 3   & 90.0    \\ \addlinespace[5pt]
+    2.7    & 21.5 & 3.1 & 3.9 & 3.8 & 3.5 & 3.7 & 4.0 & 3.8 & 3.8 & 3.3 & 3.1 & 90.0    \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+En cuanto a las preguntas abiertas. En la primera pregunta, \textit{¿Qué te gustó de la herramienta? ¿Por qué?}, las respuestas más frecuentes mencionaban que la herramienta muestra el código fuente que dio origen a la operación y que solo requiere agregar dos líneas de código para usarla. En la segunda pregunta, \textit{¿Qué no te gustó de la herramienta? ¿Por qué?}, no hubo respuestas significativamente más comunes que otras. Sin embargo, una respuesta que se repitió dos veces tiene que ver con que al eliminar un nodo de la lista este visualmente se mueve hacia abajo de la lista original en vez de desaparecer. En la tercera pregunta, \textit{¿Cómo podría ser mejor la herramienta?}, la respuesta más frecuenta estaba relacionada permitir visualizar otras estructuras de datos que no sean listas enlazadas. En el anexo~\ref{anexo:comentarios} se pueden ver todas las respuestas a las preguntas abiertas.
 
 Estos resultados muestran que la herramienta soluciona el problema abordado y cumple con el requisito de permitirle al usuario utilizar la herramienta agregando la menor cantidad de instrumentación necesaria a su código. Sin embargo, también presenta oportunidades de mejora. La principal oportunidad de mejora tiene que ver con permitir generar visualizaciones de otras estructuras de datos. Otra oportunidad de mejora sería mostrar en la visualización las referencias a los nodos del \textit{contenedor}. Esto ayudaría a los usuarios a entender que está pasando en algunos de los casos que ocurrieron durante las pruebas con usuarios. Algunas oportunidades de mejora de menor importancia tienen que ver con hacer la herramienta más configurable, permitiendo cambiar variables como: color de fondo, color de los nodos, forma de los nodos, tamaño de los nodos, etc.
