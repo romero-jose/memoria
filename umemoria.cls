@@ -59,7 +59,7 @@
 
 \RequirePackage{csquotes} % Recommended when using babel
 \RequirePackage[spanish,mexico,es-nolists]{babel} % Lenguaje
-\RequirePackage[pdfpagelabels,hidelinks]{hyperref} % Links y numeracion del PDF
+\RequirePackage[pdfpagelabels,hidelinks,pdfusetitle]{hyperref} % Links y numeracion del PDF
 \RequirePackage{pgffor} % foreach
 
 %% Lenguaje
