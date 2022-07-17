@@ -7,9 +7,15 @@
 \usepackage{pdfpages}
 \usepackage[]{biblatex}
 \usepackage{pgf-pie}
+\usepackage{algorithm}
+\usepackage{algpseudocodex}
+\usepackage{amsmath}
 
 \renewcommand{\listingscaption}{Código}
 \renewcommand{\listoflistingscaption}{Índice de Códigos}
+
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\listalgorithmname}{Índice de Algoritmos}
 
 \addbibresource{bibliografia.bib}
 
@@ -136,6 +142,8 @@ Una dedicatoria corta.
 \tableofcontents
 \listoftables % opcional
 \listoffigures % opcional
+% \listoflistings
+\listofalgorithms
 
 \mainmatter
 
