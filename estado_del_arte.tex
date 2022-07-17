@@ -81,3 +81,26 @@ Para lograr esto D3 permite enlazar datos con elementos del DOM y definir los at
 \end{figure}
 
 \section{SUS}
+\label{state-of-the-art:sus}
+
+La escala SUS, o System Usability Scale utilizando su nombre completo, fue introducida en~\cite{brooke1996quick} por John Brooke como un método ``\textit{quick and dirty}'' (rápido y sucio) para evaluar usabilidad desarrollado en Digital Equipment Corporation. Desde entonces se ha vuelto un método estándar en la industria para medir la usabilidad en todo tipo de sistemas. En~\cite{evaluation-of-sus} analizan 10 años de datos de SUS y encuentran que esta escala es una herramienta altamente robusta y versátil para las evaluaciones de usabilidad.
+
+SUS consiste en un formulario de 10 ítems que se le aplica a usuarios después de utilizar el sistema que se está evaluando. Cada ítem consiste de una afirmación para la cual el usuario debe marcar en una escala de 1 a 5 si está muy de acuerdo o muy en desacuerdo con la afirmación. Las afirmaciones están alternadas entre afirmaciones que reflejan positivamente y negativamente sobre la usabilidad, con el objetivo de obligar a los participantes a pensar sobre la respuesta de cada ítem. Las afirmaciones en la versión original son:
+\begin{enumerate}
+    \item I think that I would like to use this system frequently
+    \item I found the system unnecessarily complex
+    \item I thought the system was easy to use
+    \item I think that I would need the support of a technical person to be able to use this system
+    \item I found the various functions in this system were well integrated
+    \item I thought there was too much inconsistency in this system
+    \item I would imagine that most people would learn to use this system very quickly
+    \item I found the system very cumbersome to use
+    \item I felt very confident using the system
+    \item I needed to learn a lot of things before I could get going with this system
+\end{enumerate}
+
+A partir de las respuestas del usuario se obtiene un puntaje entre 0 y 100. Para calcular el puntaje, cómo las preguntas están alternadas, primero se deben transformar los puntajes de forma que sean consistentes. Para esto, se transforma el puntaje de cada ítem a una escala entre 0 y 4, donde 0 es lo peor y 4 es lo mejor. Esto se logra restándole 1 a los ítems impares y restando de 5 los ítems pares. Después, sumando los puntajes transformados se obtiene un puntaje total entre 0 y 40, que se multiplica por 2.5 para obtener un puntaje entre 0 y 100.
+
+En~\cite{quantifying-the-user-experience} reportan que utilizando datos de 446 estudios y más de 5000 respuestas individuales, encontraron que el promedio del puntaje fue 68 con una desviación estándar de 12.5. Por el mismo motivo recomiendan transformar el puntaje a un percentil para interpretar los resultados y presentan una tabla para transformar los puntajes a percentiles.
+
+El cuestionario asociado a esta escala está en inglés, por lo que debe traducirse al español para aplicarlo a un grupo cuya lengua nativa es el español. 
