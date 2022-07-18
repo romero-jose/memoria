@@ -4,7 +4,7 @@
 
 La solución es una librería de Python para generar visualizaciones animadas de estructuras de datos y las operaciones que se realizan sobre estas, que pueda ser usada en Jupyter Notebooks.
 
-La librería le permite al usuario implementar una estructura de datos y, agregando la instrumentación provista por la librería, le permite generar una visualización animada de las operaciones que se realizaron sobre la estructura.
+La librería le permite al usuario implementar una lista enlazada y, agregando la instrumentación provista por la librería, le permite generar una visualización animada de las operaciones que se realizaron sobre la estructura.
 
 Para permitir esto la librería está compuesta por dos partes: el \textit{back-end} y el \textit{front-end}. Estas dos partes se comunican entre sí utilizando un modelo de datos común que cada una de las partes sabe serializar y deserializar.
 
@@ -15,11 +15,11 @@ Para permitir esto la librería está compuesta por dos partes: el \textit{back-
     \label{fig:diagrama-arq}
 \end{figure}
 
-El \textit{back-end}, implementado en Python, define la instrumentación para capturar las operaciones realizadas sobre la estructura de datos. Se encarga de mantener un registro de todas las operaciones que se realizan sobre esta. Este registro se mantiene utilizando una representación de las operaciones primitivas sobre la estructura de datos. Teniendo esto, cuando un usuario quiere generar la visualización, este registro de operaciones es serializado y enviado al \textit{front-end}. Esto se logra utilizando usando la librería IPython Widgets en combinación con el serializador definido para el modelo.
+El \textit{back-end}, implementado en Python, define la instrumentación para capturar las operaciones realizadas sobre la estructura de datos. Se encarga de mantener un registro de todas las operaciones que se realizan sobre esta. Este registro se mantiene utilizando una representación de las operaciones primitivas sobre la estructura de datos. Teniendo esto, cuando un usuario quiere generar la visualización, este registro de operaciones es serializado y enviado al \textit{front-end}. Esto se logra utilizando usando la librería IPython Widgets en combinación con los serializadores y deserializadores definidos para el modelo.
 
-El \textit{front-end}, implementado en TypeScript, recibe el modelo serializado, deserializa el modelo y genera la visualización a partir de este. Para generar la visualización utiliza la librería D3js, que permite manipular el DOM (Document Object Model) en función de los datos del modelo.
+El \textit{front-end}, implementado en TypeScript, recibe el modelo serializado, lo deserializa y genera la visualización a partir del resultado. Para generar la visualización utiliza la librería D3js, que permite manipular el DOM (Document Object Model) en función de los datos del modelo.
 
-La figura~\ref{fig:flujo-informacion} es un diagrama que muestra el flujo de la información cuando se utiliza la herramienta. Primero el usuario implementa y usa la estructura de datos en el notebook, después a partir de esto se genera un registro en el back-end, luego este registro se sincroniza con el front-end y finalmente este último genera la animación en el navegador.
+La figura~\ref{fig:flujo-informacion} es un diagrama que muestra el flujo de la información cuando se utiliza la herramienta. Primero el usuario implementa y usa la estructura de datos en el notebook, después a partir de esto se genera un registro en el back-end, luego este registro se sincroniza con el front-end y finalmente este último genera la animación en el navegador a partir del registro.
 
 \begin{figure}[htb]
     \centering
@@ -33,9 +33,9 @@ En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la a
 \section{Modelo de datos}
 \label{sec:modelo-de-datos}
 
-Cuando un usuario quiere generar una visualización el back-end le envía al front-end una representación de las operaciones realizadas sobre la estructura de datos. Para esto se diseñó un modelo que representa las operaciones primitivas que se pueden realizar sobre las listas enlazadas. Además, el modelo contiene metadatos que son útiles para generar la visualización.
+Cuando un usuario quiere generar una visualización el \textit{back-end} le envía al \textit{front-end} una representación de las operaciones realizadas sobre la estructura de datos. Para esto se diseñó un modelo que representa las operaciones primitivas que se pueden realizar sobre las listas enlazadas. Además, este modelo contiene metadatos que son útiles para generar la visualización.
 
-El modelo que se utiliza para generar la visualización consiste en una lista de operaciones y metadatos de la visualización. Cada operación consiste en una operación primitiva y metadatos de la operación.
+El modelo que se utiliza para generar la visualización consiste en una lista de operaciones y metadatos de la \textit{visualización}. Cada operación consiste en una operación primitiva y metadatos de la \textit{operación}.
 
 Las operaciones primitivas son las siguientes:
 \begin{itemize}
@@ -49,7 +49,7 @@ donde \textit{id} es el identificador único de cada nodo, \textit{value} es una
 
 Los metadatos de la visualización son configuraciones de la visualización, por ejemplo, la duración de las transiciones y la duración de los fade-ins y fade-outs. En cambio, los metadatos de las operaciones contienen información que solo es relevante para esa operación, por ejemplo, si se debe animar o no esa operación y el código fuente que dio origen a la operación.
 
-En la figura~\ref{fig:codigo-vs-modelo} se puede ver un ejemplo de código fuente que usa la herramienta, una captura de la animación generada a partir de ese código y el modelo generado a partir del código que se usa para crear la visualización.
+En la figura~\ref{fig:codigo-vs-modelo} se puede ver un ejemplo de código fuente que usa la herramienta, una captura de la animación generada a partir de ese código y el modelo generado a partir del mismo código.
 
 \begin{figure}[p]
     \centering
@@ -139,9 +139,9 @@ l.visualize()
     \label{fig:codigo-vs-modelo}
 \end{figure}
 
-Este modelo en realidad representa un grafo dirigido con un grado máximo de 1. Este nivel de flexibilidad es necesario porque como la representación se genera a partir de un programa escrito por el usuario, este puede contener errores que hagan que la estructura de datos implementada no sea necesariamente una lista enlazada. Por ejemplo, por ejemplo, el usuario puede crear nodos que no estén conectados entre sí y puede crear ciclos.
+El modelo en realidad representa un grafo dirigido con un grado máximo de 1. Este nivel de flexibilidad es necesario porque como la representación se genera a partir de un programa escrito por el usuario, este puede contener errores que hagan que la estructura de datos implementada no sea necesariamente una lista enlazada. Por ejemplo, por ejemplo, el usuario puede crear nodos que no estén conectados entre sí y puede crear ciclos.
 
-Para una versión futura de la herramienta se podría cambiar esta representación para que represente grafos sin un grado máximo. Esto permitiría representar estructuras de datos tales como grafos, árboles y listas enlazadas. Se consideró utilizar esta representación desde un principio, pero no se hizo porque dificultaba la generación de la visualización para la estructura de datos abordada.
+Para una versión futura de la herramienta se podría cambiar esta representación para que represente grafos sin un grado máximo. Esto permitiría representar estructuras de datos tales como grafos, árboles y listas doblemente enlazadas. Se consideró utilizar esta representación desde un principio, pero no se hizo porque dificultaba la generación de la visualización para la estructura de datos abordada.
 
 \section{Back-end}
 
@@ -187,7 +187,7 @@ l.visualize()
 
 Para registrar las operaciones primitivas sobre la estructura de datos, el decorador \textit{node} modifica los campos con los nombres pasados como parámetros, para que al momento de acceder o asignar a estos campos se registre la operación en el \textit{logger}.
 
-Para esto se implementaron las clases ValueField y NextField. Las instancias de estas clases al ser utilizadas como atributos registran en el \textit{logger} sus acceso o asignaciones. Esto se hace utilizando los métodos \texttt{\_\_get\_\_} y \texttt{\_\_set\_\_}, que son métodos especiales de Python que se ejecutan al intentar acceder o asignar a objetos que tienen estos métodos definidos. El decorador \textit{container} utiliza los nombres que recibe como parámetros para agregar como campos instancias de estas dos clases usando los nombres respectivos.
+Para esto se implementaron las clases ValueField y NextField. Las instancias de estas clases, al ser utilizadas como atributos registran en el \textit{logger} sus acceso o asignaciones. Esto se hace utilizando los métodos \texttt{\_\_get\_\_} y \texttt{\_\_set\_\_}, métodos especiales de Python que se ejecutan al intentar acceder o asignar a objetos que tienen estos métodos definidos. El decorador \textit{container} utiliza los nombres que recibe como parámetros para agregar como campos instancias de estas dos clases usando los nombres respectivos.
 
 La clase Logger mantiene el registro de las operaciones primitivas sobre la estructura de datos. Además, se puede utilizar como un \textit{context manager} (objetos de Python que definen un contexto y se utilizan con \texttt{with}) y dentro del scope introducido todas las operaciones serán registradas en este \textit{logger}. En el código~\ref{lst:ejemplo-logger-ctx-mgr} se puede ver un ejemplo de esta funcionalidad.
 
