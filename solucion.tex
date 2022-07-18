@@ -219,15 +219,15 @@ En el anexo~\ref{anexo:codigo-fuente-decoradores} se puede ver la implementació
 
 El front-end se encarga de generar la visualización a partir del modelo que se mantiene sincronizado con el back-end. Para esto, requiere saber cómo deserializar el modelo que recibe del back-end y generar la visualización a partir del resultado. Para generar la visualización utiliza la librería D3js.
 
-Cuando el usuario llama el método \textit{visualize} en el back-end esto genera un Widget de IPython Widgets que se sincroniza con el front-end. Este utiliza la función de deserialización para obtener un objeto de JavaScript a partir del modelo serializado. Después de esto, para dibujar el Widget, la librería utiliza la \textit{vista} del Widget correspondiente. Esta obtiene un elemento del DOM ---el output de la casilla que llamó el método \textit{visualize}--- y añade la visualización a ese elemento.
+Cuando el usuario llama el método \textit{visualize} en el back-end esto genera un Widget de IPython que se sincroniza con el front-end. Este utiliza la función de deserialización para obtener un objeto de JavaScript a partir del modelo serializado. Después de esto, para dibujar el Widget, la librería utiliza la \textit{vista} del Widget correspondiente. Esta obtiene un elemento del DOM ---el output de la casilla que llamó el método \textit{visualize}--- y añade la visualización a ese elemento.
 
-La generación de la visualización tiene dos pasos. Primero, se inicializa el objeto de la visualización. Después, por cada operación del modelo, se muestra el código fuente que dio origen a esa operación y se visualiza esa operación.
+La vista del Widget primero inicializa la visualización y luego muestra paso por paso cada operación registrada.  Al momento de mostrar la operación también se muestra el código fuente que dio origen a esa operación.
 
 \subsection{Visualizar una operación}
 
 Para visualizar una operación, primero se actualiza el modelo de la visualización y luego se animan los cambios. La animación de los cambios consiste en mostrar la iteración (cuando la operación es \textit{GetNext}), con una flecha que se mueve de un nodo al siguiente, y luego actualizar la visualización según el nuevo modelo.
 
-El modelo de la visualización está compuesto por un diccionario de nodos y un diccionario de arcos. El diccionario de nodos asocia los índices de los nodos a sus valores, mientras que el diccionario de arcos asocia nodos a su siguiente nodo. Este modelo es apropiado porque, como se explicó en la sección~\ref{sec:modelo-de-datos} el registro capturado describe una serie de operaciones sobre un grafo dirigido de grado máximo 1.
+El modelo de la visualización está compuesto por un diccionario de nodos y un diccionario de arcos. El diccionario de nodos asocia los índices de los nodos a sus valores, mientras que el diccionario de arcos asocia los índices de los nodos al índice del nodo siguiente respectivo. Este modelo es apropiado porque, como se explicó en la sección~\ref{sec:modelo-de-datos} el registro capturado describe una serie de operaciones sobre un grafo dirigido de grado máximo 1.
 
 El modelo de la visualización se actualiza según el algoritmo~\ref{alg:representacion-visualizacion}. Dado un diccionario de nodos $V$, un diccionario de arcos $E$ y una operación, se actualizan estos diccionarios cómo se describe en el pseudocódigo.
 
@@ -293,4 +293,6 @@ En el caso de Python, generar el paquete es relativamente sencillo, porque solo 
 
 Para facilitar el lanzamiento de nuevas versiones de la herramienta, el repositorio se encuentra en GitHub y utiliza Github Actions ---una funcionalidad de GitHub que permite ejecutar programas después de eventos como commits o deploys--- para correr las pruebas y para publicar versiones nuevas de la librería.
 
-Cada vez que se agrega un commit al repositorio, una GitHub Action corre los tests y los \textit{linters} de Python (Black) y de JavaScript (Prettier). Además, cuando se hace un release del repositorio, otra Github Action compila los paquetes de Python y de JavaScript y los sube a los repositorios de los administradores de paquetes respectivos. Esto permite lanzar nuevas versiones de la herramienta de forma muy expedita, facilitando y acelerando el desarrollo.
+Cada vez que se agrega un commit al repositorio, una GitHub Action corre los tests y los \textit{linters} de Python (Black) y de JavaScript (Prettier). Los tests se corren tanto en Ubuntu como en macOS y para Python versión 3.7 y 3.10. Además, cuando se hace un release del repositorio, otra Github Action compila los paquetes de Python y de JavaScript y los sube a los repositorios de los administradores de paquetes respectivos. Esto permite lanzar nuevas versiones de la herramienta de forma muy expedita, facilitando y acelerando el desarrollo.
+
+Gracias a que la librería se encuentra publicada en los repositorios respectivos puede ser utilizada por cualquier usuario con acceso a estos repositorios. Además, se comprobó que la herramienta funciona no solo en Jupyter Notebook, sino también en Google Colab y en Visual Studio Code.
