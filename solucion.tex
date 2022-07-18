@@ -149,7 +149,7 @@ El back-end se encarga de proveer la instrumentación necesaria para que el usua
 
 Para esto, la librería provee dos \textit{decoradores} ---azúcar sintáctica de Python para aplicar funciones a las definiciones de clases o funciones--- \textit{node} y \textit{container}. El primero de estos se aplica a la clase que representa el nodo de la lista enlazada, mientras que el segundo se aplica a la clase que contiene la referencia al primer nodo de la lista. En el código~\ref{lst:ejemplo-uso} se puede ver un ejemplo del uso de estos decoradores y en la figura~\ref{fig:visualizacion_ej} se puede ver un cuadro de la visualización generada.
 
-\begin{listing}[h]
+\begin{listing}[h!]
 \caption{Ejemplo de uso de la librería}
 \label{lst:ejemplo-uso}
 \begin{minted}[linenos=true]{python}
@@ -177,7 +177,7 @@ l.visualize()
 \end{minted}
 \end{listing}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{imagenes/ejemplos/ejemplo}
     \caption{Captura de la visualización generada a partir del código~\ref{lst:ejemplo-uso}.}
@@ -193,7 +193,7 @@ La clase Logger mantiene el registro de las operaciones primitivas sobre la estr
 
 El objeto \textit{logger} implementa un método para registrar las distintas operaciones del modelo. Adicionalmente, este método se encarga de obtener el código fuente que dio origen a la operación, para ser mostrado en la visualización. Para esto obtiene del \textit{stack} de Python el número de la línea correspondiente y el nombre del archivo. Teniendo esto, lee una cantidad configurable de líneas de contexto del archivo y las formatea junto con el nombre y los argumentos del método del contenedor que dio origen a la operación.
 
-\begin{listing}[h]
+\begin{listing}[h!]
   \caption{Ejemplo de uso del \textit{logger} como un \textit{context manager}.}
   \label{lst:ejemplo-logger-ctx-mgr}
   \begin{minted}[linenos=true]{python}
