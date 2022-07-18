@@ -106,15 +106,15 @@ Si bien, si existen visualizaciones animadas de estructuras de datos, estas son 
 
 En particular, para el curso Algoritmos y Estructuras de Datos del Departamento de Ciencias de la Computación de la Universidad de Chile se desarrolló previamente una herramienta que genera diagramas estáticos y existe la necesidad de una herramienta similar, pero que permita generar visualizaciones animadas.
 
-Por lo anterior sería útil contar con una herramienta que permita generar visualizaciones animadas de estructuras de datos que esté incorporada en el mismo ambiente de desarrollo.
-De esta manera el usuario puede visualizar la estructura de datos al mismo tiempo que la implementa, incluso permitiéndole ver cuando su implementación tiene errores.
+Por lo anterior, sería útil contar con una herramienta que permita generar visualizaciones animadas de estructuras de datos que esté incorporada en el mismo ambiente de desarrollo.
+De esta manera, el usuario puede visualizar la estructura de datos al mismo tiempo que la implementa, incluso permitiéndole ver cuando su implementación tiene errores.
 
 Para satisfacer esta necesidad se creó \textit{dsvisualizer}, una herramienta para generar visualizaciones animadas de estructuras de datos implementadas en Python.
 Le permite al usuario generar una animación de su propia implementación, minimizando la intervención del usuario a su código.
 
-Para lograr esto \textit{dsvisualizer} tiene un \textit{back-end} y un \textit{front-end}. El \textit{back-end}, implementado en Python, captura las operaciones sobre la estructura a visualizar y genera un modelo de estas que se lo envía al \textit{front-end}. Este, implementado en TypeScript, recibe el modelo desde el \textit{back-end} y a partir de este genera la visualización animada, utilizando la librería de animación D3js.
+Para lograr esto, \textit{dsvisualizer} tiene un \textit{back-end} y un \textit{front-end}. El \textit{back-end}, implementado en Python, captura las operaciones sobre la estructura a visualizar y genera un modelo de estas que se lo envía al \textit{front-end}. Este, implementado en TypeScript, recibe el modelo desde el \textit{back-end} y a partir de este genera la visualización animada, utilizando la librería de animación D3js.
 
-Para evaluar la herramienta se hicieron pruebas con usuarios ---12 estudiantes de la Facultad de Ciencias Físicas y Matemáticas---, donde se les pidió utilizar la herramienta y luego contestar un cuestionario. La primera parte de este corresponde a la escala de usabilidad SUS, en la cual la herramienta obtuvo un puntaje promedio de 90 de 100 puntos. La segunda parte consiste de preguntas abiertas, donde se preguntó por: comentarios positivos, comentarios negativos y oportunidades de mejora. El resultado de la evaluación fue muy positivo, pero de todas maneras se identificaron varias oportunidades de mejora y nuevas funcionalidades que contribuirían a hacer la herramienta aún más útil.
+Para evaluar la herramienta se hicieron pruebas con usuarios ---12 estudiantes de la Facultad de Ciencias Físicas y Matemáticas---, donde se les pidió utilizar la herramienta y luego contestar un cuestionario. La primera parte de este corresponde a la escala de usabilidad SUS, en la cual la herramienta obtuvo un puntaje promedio de 90 de 100 puntos. La segunda parte consiste en preguntas abiertas, donde se preguntó por: comentarios positivos, comentarios negativos y oportunidades de mejora. El resultado de la evaluación fue muy positivo, pero de todas maneras se identificaron varias oportunidades de mejora y nuevas funcionalidades que contribuirían a hacer la herramienta aún más útil.
 \end{resumen}
 
 % opcional: incluir para tesis en inglés;

@@ -6,7 +6,7 @@ La solución es una librería de Python para generar visualizaciones animadas de
 
 La librería le permite al usuario implementar una lista enlazada y, agregando la instrumentación provista por la librería, le permite generar una visualización animada de las operaciones que se realizaron sobre la estructura.
 
-Para permitir esto la librería está compuesta por dos partes: el \textit{back-end} y el \textit{front-end}. Estas dos partes se comunican entre sí utilizando un modelo de datos común que cada una de las partes sabe serializar y deserializar.
+Para permitir esto, la librería está compuesta por dos partes: el \textit{back-end} y el \textit{front-end}. Estas dos partes se comunican entre sí utilizando un modelo de datos común que cada una de las partes sabe serializar y deserializar.
 
 \begin{figure}[htb]
     \centering
@@ -33,7 +33,7 @@ En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la a
 \section{Modelo de datos}
 \label{sec:modelo-de-datos}
 
-Cuando un usuario quiere generar una visualización el \textit{back-end} le envía al \textit{front-end} una representación de las operaciones realizadas sobre la estructura de datos. Para esto se diseñó un modelo que representa las operaciones primitivas que se pueden realizar sobre las listas enlazadas. Además, este modelo contiene metadatos que son útiles para generar la visualización.
+Cuando un usuario quiere generar una visualización, el \textit{back-end} le envía al \textit{front-end} una representación de las operaciones realizadas sobre la estructura de datos. Para esto se diseñó un modelo que representa las operaciones primitivas que se pueden realizar sobre las listas enlazadas. Además, este modelo contiene metadatos que son útiles para generar la visualización.
 
 El modelo que se utiliza para generar la visualización consiste en una lista de operaciones y metadatos de la \textit{visualización}. Cada operación consiste en una operación primitiva y metadatos de la \textit{operación}.
 
@@ -187,9 +187,9 @@ l.visualize()
 
 Para registrar las operaciones primitivas sobre la estructura de datos, el decorador \textit{node} modifica los campos con los nombres pasados como parámetros, para que al momento de acceder o asignar a estos campos se registre la operación en el \textit{logger}.
 
-Para esto se implementaron las clases ValueField y NextField. Las instancias de estas clases, al ser utilizadas como atributos registran en el \textit{logger} sus acceso o asignaciones. Esto se hace utilizando los métodos \texttt{\_\_get\_\_} y \texttt{\_\_set\_\_}, métodos especiales de Python que se ejecutan al intentar acceder o asignar a objetos que tienen estos métodos definidos. El decorador \textit{container} utiliza los nombres que recibe como parámetros para agregar como campos instancias de estas dos clases usando los nombres respectivos.
+Para esto se implementaron las clases ValueField y NextField. Las instancias de estas clases, al ser utilizadas como atributos, registran en el \textit{logger} sus accesos o asignaciones. Esto se hace utilizando los métodos \texttt{\_\_get\_\_} y \texttt{\_\_set\_\_}, métodos especiales de Python que se ejecutan al intentar acceder o asignar a objetos que tienen estos métodos definidos. El decorador \textit{container} utiliza los nombres que recibe como parámetros para agregar como campos instancias de estas dos clases usando los nombres respectivos.
 
-La clase Logger mantiene el registro de las operaciones primitivas sobre la estructura de datos. Además, se puede utilizar como un \textit{context manager} (objetos de Python que definen un contexto y se utilizan con \texttt{with}) y dentro del scope introducido todas las operaciones serán registradas en este \textit{logger}. En el código~\ref{lst:ejemplo-logger-ctx-mgr} se puede ver un ejemplo de esta funcionalidad.
+La clase Logger mantiene el registro de las operaciones primitivas sobre la estructura de datos. Además, se puede utilizar como un \textit{context manager} (objetos de Python que definen un contexto y se utilizan con \texttt{with}) y dentro del \textit{scope} o alcance introducido, todas las operaciones serán registradas en este \textit{logger}. En el código~\ref{lst:ejemplo-logger-ctx-mgr} se puede ver un ejemplo de esta funcionalidad, la cual adicionalmente permite visualizar nodos que no están asociados a un contenedor.
 
 El objeto \textit{logger} implementa un método para registrar las distintas operaciones del modelo. Adicionalmente, este método se encarga de obtener el código fuente que dio origen a la operación, para ser mostrado en la visualización. Para esto obtiene del \textit{stack} de Python el número de la línea correspondiente y el nombre del archivo. Teniendo esto, lee una cantidad configurable de líneas de contexto del archivo y las formatea junto con el nombre y los argumentos del método del contenedor que dio origen a la operación.
 
@@ -217,9 +217,9 @@ En el anexo~\ref{anexo:codigo-fuente-decoradores} se puede ver la implementació
 
 \section{Front-end}
 
-El front-end se encarga de generar la visualización a partir del modelo que se mantiene sincronizado con el back-end. Para esto, requiere saber como deserializar el modelo que recibe del back-end y generar la visualización a partir del resultado. Para generar la visualización utiliza la librería D3js.
+El front-end se encarga de generar la visualización a partir del modelo que se mantiene sincronizado con el back-end. Para esto, requiere saber cómo deserializar el modelo que recibe del back-end y generar la visualización a partir del resultado. Para generar la visualización utiliza la librería D3js.
 
-Cuando el usuario llama el método \textit{visualize} en el backend esto genera un Widget de IPython Widgets que se sincroniza con el front-end. Este utiliza la función de deserialización para obtener un objeto de JavaScript a partir del modelo serializado. Después de esto, para dibujar el Widget, la librería utiliza la \textit{vista} del Widget correspondiente. Esta obtiene un elemento del DOM ---el output de la casilla que llamó el método \textit{visualize}--- y añade la visualización a ese elemento.
+Cuando el usuario llama el método \textit{visualize} en el back-end esto genera un Widget de IPython Widgets que se sincroniza con el front-end. Este utiliza la función de deserialización para obtener un objeto de JavaScript a partir del modelo serializado. Después de esto, para dibujar el Widget, la librería utiliza la \textit{vista} del Widget correspondiente. Esta obtiene un elemento del DOM ---el output de la casilla que llamó el método \textit{visualize}--- y añade la visualización a ese elemento.
 
 La generación de la visualización tiene dos pasos. Primero, se inicializa el objeto de la visualización. Después, por cada operación del modelo, se muestra el código fuente que dio origen a esa operación y se visualiza esa operación.
 
@@ -227,7 +227,7 @@ La generación de la visualización tiene dos pasos. Primero, se inicializa el o
 
 Para visualizar una operación, primero se actualiza el modelo de la visualización y luego se animan los cambios. La animación de los cambios consiste en mostrar la iteración (cuando la operación es \textit{GetNext}), con una flecha que se mueve de un nodo al siguiente, y luego actualizar la visualización según el nuevo modelo.
 
-El modelo de la visualización está compuesto por un diccionario de nodos y un diccionario de arcos. El diccionario de nodos asocia los índices de los nodos a sus valores, mientras que el diccionario de arcos asocia nodos a su siguiente nodo. Este modelo es apropiado porque como se explicó en la sección~\ref{sec:modelo-de-datos} el registro capturado describe una serie de operaciones sobre un grafo dirigido de grado máximo 1.
+El modelo de la visualización está compuesto por un diccionario de nodos y un diccionario de arcos. El diccionario de nodos asocia los índices de los nodos a sus valores, mientras que el diccionario de arcos asocia nodos a su siguiente nodo. Este modelo es apropiado porque, como se explicó en la sección~\ref{sec:modelo-de-datos} el registro capturado describe una serie de operaciones sobre un grafo dirigido de grado máximo 1.
 
 El modelo de la visualización se actualiza según el algoritmo~\ref{alg:representacion-visualizacion}. Dado un diccionario de nodos $V$, un diccionario de arcos $E$ y una operación, se actualizan estos diccionarios cómo se describe en el pseudocódigo.
 
@@ -248,7 +248,7 @@ El modelo de la visualización se actualiza según el algoritmo~\ref{alg:represe
   \end{algorithmic}
 \end{algorithm}
 
-Para visualizar por separado las componentes conexas del grafo se deben encontrar los subgrafos conexos a partir de esta representación. En la literatura existen varios algoritmos para resolver este problema, pero por simplicidad se decidió acotar la librería al caso donde el grafo es acíclico, es decir, un bosque. De esta manera, todos los nodos que no tienen ningún arco que apunte a ellos son puntos de entrada. Además, todos estos puntos de entrada definen una lista conexa que no tiene conexiones con otras listas. Entonces, podemos visualizar cada una de estas componentes conexas como una lista. En el algoritmo~\ref{alg:encontrar-cabezas} se puede ver el algoritmo utilizado para encontrar los puntos de entrada o \textit{cabezas}
+Para visualizar por separado las componentes conexas del grafo se deben encontrar los subgrafos conexos a partir de esta representación. En la literatura existen varios algoritmos para resolver este problema, pero por simplicidad se decidió acotar la librería al caso donde el grafo es acíclico, es decir, un bosque. De esta manera, todos los nodos que no tienen ningún arco que apunte a ellos son puntos de entrada. Además, todos estos puntos de entrada definen una lista conexa que no tiene conexiones con otras listas. Entonces, podemos visualizar cada una de estas componentes conexas como una lista. En el algoritmo~\ref{alg:encontrar-cabezas} se puede ver el algoritmo utilizado para encontrar los puntos de entrada o \textit{cabezas}.
 
 \begin{algorithm}[htb]
   \caption{Algoritmo para encontrar las \textit{cabezas}}
@@ -287,10 +287,10 @@ En la primera fase se anima la transición a la nueva posición y valor del nodo
 
 \section{Integración Continua y Entrega Continua}
 
-Para que la herramienta pueda ser utilizada instalándola con el administrador de paquetes de Python se publicó en el repositorio oficial del administrador de paquetes de Python, PyPi (Python Package Index)\footnote{El paquete de PyPi se encuentra disponible en \url{https://pypi.org/project/dsvisualizer/}}. Adicionalmente, cómo el front-end de la herramienta está implementado en TypeScript también fue necesario publicar un paquete en el repositorio NPM (Node Package Manager)\footnote{El paquete de NPM se encuentra disponible en \url{https://www.npmjs.com/package/jupyter-dsvisualizer}}.
+Para que la herramienta pueda ser utilizada instalándola con el administrador de paquetes de Python, se publicó en el repositorio oficial del administrador de paquetes de Python, PyPi (Python Package Index)\footnote{El paquete de PyPi se encuentra disponible en \url{https://pypi.org/project/dsvisualizer/}}. Adicionalmente, cómo el front-end de la herramienta está implementado en TypeScript, también fue necesario publicar un paquete en el repositorio NPM (Node Package Manager)\footnote{El paquete de NPM se encuentra disponible en \url{https://www.npmjs.com/package/jupyter-dsvisualizer}}.
 
-En el caso de Python generar el paquete es relativamente sencillo, porque solo utiliza el código definido en el archivo \texttt{setup.py}. En cambio, en el caso del TypeScript esto involucra el uso de una serie de herramientas. Algunas de estas herramientas son: el compilador de TypeScript (TSC) para el chequeo de tipos y la generación del código en JavaScript; y Webpack para generar \textit{bundles} minimizadas a partir del código en JavaScript obtenido de TSC. La generación de \textit{bundles} minimizadas es importante porque reduce el tamaño del paquete que tiene que instalar el usuario, lo que es especialmente relevante cuando este no cuenta con una buena conexión a internet, y porque reduce el tiempo inicial que el navegador se demora en poder ejecutar el código.
+En el caso de Python, generar el paquete es relativamente sencillo, porque solo utiliza el código definido en el archivo \texttt{setup.py}. En cambio, en el caso de TypeScript, esto involucra el uso de una serie de herramientas. Algunas de estas herramientas son: el compilador de TypeScript (TSC) para el chequeo de tipos y la generación del código en JavaScript; y Webpack para generar \textit{bundles} minimizadas a partir del código en JavaScript obtenido de TSC. La generación de \textit{bundles} minimizadas es importante porque reduce el tamaño del paquete que tiene que instalar el usuario, lo que es especialmente relevante cuando este no cuenta con una buena conexión a internet, y porque reduce el tiempo inicial que el navegador se demora en poder ejecutar el código.
 
-Para facilitar el lanzamiento de nuevas versiones de la herramienta el repositorio se encuentra en GitHub y utiliza Github Actions ---una funcionalidad de GitHub que permite ejecutar programas después de eventos como commits o deploys--- para correr las pruebas y para publicar versiones nuevas de la librería.
+Para facilitar el lanzamiento de nuevas versiones de la herramienta, el repositorio se encuentra en GitHub y utiliza Github Actions ---una funcionalidad de GitHub que permite ejecutar programas después de eventos como commits o deploys--- para correr las pruebas y para publicar versiones nuevas de la librería.
 
 Cada vez que se agrega un commit al repositorio, una GitHub Action corre los tests y los \textit{linters} de Python (Black) y de JavaScript (Prettier). Además, cuando se hace un release del repositorio, otra Github Action compila los paquetes de Python y de JavaScript y los sube a los repositorios de los administradores de paquetes respectivos. Esto permite lanzar nuevas versiones de la herramienta de forma muy expedita, facilitando y acelerando el desarrollo.
