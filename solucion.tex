@@ -145,11 +145,11 @@ Para una versión futura de la herramienta se podría cambiar esta representaci�
 
 \section{Back-end}
 
-El back-end se encarga de proveer la instrumentación necesaria para que el usuario pueda generar visualizaciones de las estructuras de datos que ha implementado. Usando esta instrumentación mantiene un registro de las operaciones primitivas realizadas sobre la estructura de datos y cuando el usuario quiere visualizar el resultado serializa este registro y lo envía al \textit{front-end}.
+El back-end se encarga de proveer la instrumentación necesaria para que el usuario pueda generar visualizaciones de las estructuras de datos que ha implementado. Usando esta instrumentación mantiene un registro de las operaciones primitivas realizadas sobre la estructura de datos, y cuando el usuario quiere visualizar el resultado, serializa este registro y lo envía al \textit{front-end}.
 
-Para esto la librería provee dos \textit{decoradores} ---azúcar sintáctica de Python para aplicar funciones a las definiciones de clases o funciones--- \textit{node} y \textit{container}. El primero de estos denota la clase que representa el nodo de la lista enlazada, mientras que el segundo denota la clase que contiene una referencia al primer nodo de la lista. En el código~\ref{lst:ejemplo-uso} se puede ver un ejemplo del uso de estos decoradores y en la figura~\ref{fig:visualizacion_ej} se puede ver un cuadro de la visualización generada.
+Para esto, la librería provee dos \textit{decoradores} ---azúcar sintáctica de Python para aplicar funciones a las definiciones de clases o funciones--- \textit{node} y \textit{container}. El primero de estos se aplica a la clase que representa el nodo de la lista enlazada, mientras que el segundo se aplica a la clase que contiene la referencia al primer nodo de la lista. En el código~\ref{lst:ejemplo-uso} se puede ver un ejemplo del uso de estos decoradores y en la figura~\ref{fig:visualizacion_ej} se puede ver un cuadro de la visualización generada.
 
-\begin{listing}[htb]
+\begin{listing}[h]
 \caption{Ejemplo de uso de la librería}
 \label{lst:ejemplo-uso}
 \begin{minted}[linenos=true]{python}
@@ -177,7 +177,7 @@ l.visualize()
 \end{minted}
 \end{listing}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{imagenes/ejemplos/ejemplo}
     \caption{Captura de la visualización generada a partir del código~\ref{lst:ejemplo-uso}.}
@@ -185,29 +185,35 @@ l.visualize()
     \centering
 \end{figure}
 
-Para registrar las operaciones primitivas sobre la estructura de datos el decorador \textit{node} modifica los campos pasados como parámetros para que al momento de acceder o asignar a estos campos se registre la operación en el \textit{logger}.
+Para registrar las operaciones primitivas sobre la estructura de datos, el decorador \textit{node} modifica los campos con los nombres pasados como parámetros, para que al momento de acceder o asignar a estos campos se registre la operación en el \textit{logger}.
 
-El \textit{logger} es un objeto que mantiene el registro de las operaciones primitivas sobre la estructura de datos. Además, se puede utilizar como un \textit{context manager} (objetos de Python que definen un contexto y se utilizan con \texttt{with}) y dentro del scope introducido todas las operaciones serán registradas en este \textit{logger}. En el código~\ref{lst:ejemplo-logger-ctx-mgr} se puede ver un ejemplo de esta funcionalidad.
+Para esto se implementaron las clases ValueField y NextField. Las instancias de estas clases al ser utilizadas como atributos registran en el \textit{logger} sus acceso o asignaciones. Esto se hace utilizando los métodos \texttt{\_\_get\_\_} y \texttt{\_\_set\_\_}, que son métodos especiales de Python que se ejecutan al intentar acceder o asignar a objetos que tienen estos métodos definidos. El decorador \textit{container} utiliza los nombres que recibe como parámetros para agregar como campos instancias de estas dos clases usando los nombres respectivos.
 
-\begin{listing}[htb]
-\caption{Ejemplo de uso del \textit{logger} como un \textit{context manager}.}
-\label{lst:ejemplo-logger-ctx-mgr}
-\begin{minted}[linenos=true]{python}
-from dsvisualizer import logger
+La clase Logger mantiene el registro de las operaciones primitivas sobre la estructura de datos. Además, se puede utilizar como un \textit{context manager} (objetos de Python que definen un contexto y se utilizan con \texttt{with}) y dentro del scope introducido todas las operaciones serán registradas en este \textit{logger}. En el código~\ref{lst:ejemplo-logger-ctx-mgr} se puede ver un ejemplo de esta funcionalidad.
 
-with Logger() as logger:
-    n = Node(5, Node(10, Node(20, None)))
-logger.visualize()
+El objeto \textit{logger} implementa un método para registrar las distintas operaciones del modelo. Adicionalmente, este método se encarga de obtener el código fuente que dio origen a la operación, para ser mostrado en la visualización. Para esto obtiene del \textit{stack} de Python el número de la línea correspondiente y el nombre del archivo. Teniendo esto, lee una cantidad configurable de líneas de contexto del archivo y las formatea junto con el nombre y los argumentos del método del contenedor que dio origen a la operación.
 
-with logger:
-    n = Node(10, n)
-logger.visualize()
-\end{minted}
+\begin{listing}[h]
+  \caption{Ejemplo de uso del \textit{logger} como un \textit{context manager}.}
+  \label{lst:ejemplo-logger-ctx-mgr}
+  \begin{minted}[linenos=true]{python}
+  from dsvisualizer import logger
+  
+  with Logger() as logger:
+      n = Node(5, Node(10, Node(20, None)))
+  logger.visualize()
+  
+  with logger:
+      n = Node(10, n)
+  logger.visualize()
+  \end{minted}
 \end{listing}
 
-Cuando se aplica el decorador \textit{container} a una clase, se crea un Logger asociado a cada instancia de esa clase y para todos los métodos de esa clase se utiliza ese logger como \textit{context manager} para que las operaciones sobre la estructura de datos queden registradas en el logger del contenedor.
+Cuando se aplica el decorador \textit{container} a una clase, además de agregar el método \textit{visualize}, se crea un Logger asociado a cada instancia de esa clase, y para todos los métodos de esa clase se utiliza ese \textit{logger} como un \textit{context manager} para que las operaciones sobre la estructura de datos queden registradas en el \textit{logger} del contenedor.
 
-Esta parte originalmente se implementó usando herencia en vez de decoradores, pero se cambió debido a que de esta manera eran menores los cambios que el usuario debía hacer a su programa para permitirle usar la herramienta.
+Esta parte originalmente se implementó usando herencia y metaclases en vez de decoradores, pero se cambió a la implementación actual utilizando decoradores porque de esta manera resulta más fácil la utilización de la herramienta. La versión utilizando herencia requería utilizar directamente las clases \textit{ValueField} y \textit{NextField}, además de tener que llamar explícitamente el constructor de la superclase en la clase que se está implementando. En cambio, esta versión solo requiere que el usuario agregue a su implementación los dos decoradores para poder usar la herramienta.
+
+En el anexo~\ref{anexo:codigo-fuente-decoradores} se puede ver la implementación de los decoradores \textit{node} y \textit{container}, además de la implementación de las clases \textit{ValueField} y \textit{NextField}.
 
 \section{Front-end}
 
