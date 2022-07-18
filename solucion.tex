@@ -249,7 +249,7 @@ Para visualizar por separado las componentes conexas del grafo se deben encontra
   \label{alg:encontrar-cabezas}
   \begin{algorithmic}[1]
   \Function {FindHeads}{$V$, $E$}
-    \State values \gets \Call{Values}{$E$}
+    \State values \gets \Call{Set}{\Call{Values}{$E$}}
     \State heads \gets \Call{Filter}{$\lambda n . n \notin \text{values}$, \Call{Keys}{$V$}} \Comment{Índices de los nodos con grado de entrada 0}
     \State \Return heads
   \EndFunction
