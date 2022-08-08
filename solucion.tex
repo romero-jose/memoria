@@ -8,27 +8,27 @@ La librería le permite al usuario implementar una lista enlazada y, agregando l
 
 Para permitir esto, la librería está compuesta por dos partes: el \textit{back-end} y el \textit{front-end}. Estas dos partes se comunican entre sí utilizando un modelo de datos común que cada una de las partes sabe serializar y deserializar.
 
-\begin{figure}[htb]
-    \centering
-    \includesvg[width=\textwidth]{imagenes/diagramas/arquitectura.svg}
-    \caption{Diagrama de la arquitectura}
-    \label{fig:diagrama-arq}
-\end{figure}
-
 El \textit{back-end}, implementado en Python, define la instrumentación para capturar las operaciones realizadas sobre la estructura de datos. Se encarga de mantener un registro de todas las operaciones que se realizan sobre esta. Este registro se mantiene utilizando una representación de las operaciones primitivas sobre la estructura de datos. Teniendo esto, cuando un usuario quiere generar la visualización, este registro de operaciones es serializado y enviado al \textit{front-end}. Esto se logra utilizando usando la librería IPython Widgets en combinación con los serializadores y deserializadores definidos para el modelo.
 
 El \textit{front-end}, implementado en TypeScript, recibe el modelo serializado, lo deserializa y genera la visualización a partir del resultado. Para generar la visualización utiliza la librería D3js, que permite manipular el DOM (Document Object Model) en función de los datos del modelo.
 
-La figura~\ref{fig:flujo-informacion} es un diagrama que muestra el flujo de la información cuando se utiliza la herramienta. Primero el usuario implementa y usa la estructura de datos en el notebook, después a partir de esto se genera un registro en el back-end, luego este registro se sincroniza con el front-end y finalmente este último genera la animación en el navegador a partir del registro.
-
 \begin{figure}[htb]
-    \centering
-    \includesvg[pretex=\footnotesize,width=\textwidth]{imagenes/diagramas/diagrama-de-flujo.svg}
-    \caption{Flujo de la información}
-    \label{fig:flujo-informacion}
+  \centering
+  \includesvg[pretex=\footnotesize,width=\textwidth]{imagenes/diagramas/diagrama-de-flujo.svg}
+  \caption{Flujo de la información}
+  \label{fig:flujo-informacion}
 \end{figure}
 
+La figura~\ref{fig:flujo-informacion} es un diagrama que muestra el flujo de la información cuando se utiliza la herramienta. Primero el usuario implementa y usa la estructura de datos en el notebook, después a partir de esto se genera un registro en el back-end, luego este registro se sincroniza con el front-end y finalmente este último genera la animación en el navegador a partir del registro.
+
 En la figura~\ref{fig:diagrama-arq} se puede ver un diagrama que representa la arquitectura física de la solución. El usuario interactúa con la herramienta usando el navegador, donde corre el front-end. Este se comunica usando HTTP y Websockets con el servidor de Notebooks, que se encarga de interactuar con el archivo del Notebook y se comunica con el kernel usando ZeroMQ ---una librería de comunicación asíncrona orientada a mensajes---. El kernel contiene el intérprete de Python y es donde corre el back-end de la herramienta.
+
+\begin{figure}[htb]
+  \centering
+  \includesvg[width=\textwidth]{imagenes/diagramas/arquitectura.svg}
+  \caption{Diagrama de la arquitectura}
+  \label{fig:diagrama-arq}
+\end{figure}
 
 \section{Modelo de datos}
 \label{sec:modelo-de-datos}
