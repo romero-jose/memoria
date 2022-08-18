@@ -95,14 +95,14 @@
 }
 
 %% Spaced Small Caps and All Caps (for fancy cover page)
-\newcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace = 8}\scshape#1}}
-\newcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace = 15}#1}}
+\newcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace = 12}\scshape#1}}
+\newcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace = 12}#1}}
 
 \newcommand\scspace[1]{\smallcapsspacing{#1}}
 \newcommand\scspaced[1]{\smallcapsspacing{\MakeLowercase{#1}}}
 \newcommand\acspaced[1]{\allcapsspacing{\MakeUppercase{#1}}}
 
-\newcommand\mcspaced[1]{\addfontfeature{LetterSpace = 8}\textsc{#1}}
+\newcommand\mcspaced[1]{\addfontfeature{LetterSpace = 12}\textsc{#1}}
 
 \newcommand\oldstyle[1]{\addfontfeature{Numbers = OldStyle}#1}
 
@@ -194,8 +194,8 @@
 
 		\begin{center}
 			\vspace{120pt}
-			\huge
-			\scspace{\@title}
+			\Huge
+			\addfontfeature{LetterSpace = 12}\scshape{\@title}
 		\end{center}
 		\vspace{1.25cm}
 		\begin{center}
