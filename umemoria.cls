@@ -52,11 +52,6 @@
 
 \RequirePackage[toc, page]{appendix}
 
-% Redefines
-\renewcommand{\appendixname}{Anexo}
-\renewcommand{\appendixpagename}{Anexos}
-\renewcommand{\appendixtocname}{Anexos}
-
 \RequirePackage{csquotes} % Recommended when using babel
 \RequirePackage[spanish,mexico,es-nolists]{babel} % Lenguaje
 \RequirePackage[pdfpagelabels,hidelinks,pdfusetitle]{hyperref} % Links y numeracion del PDF
@@ -67,6 +62,10 @@
 \addto\captionsspanish{\renewcommand\contentsname{Tabla de Contenido}}
 \addto\captionsspanish{\renewcommand\listtablename{Índice de Tablas}}
 \addto\captionsspanish{\renewcommand\listfigurename{Índice de Ilustraciones}}
+
+\addto\captionsspanish{\renewcommand{\appendixname}{Anexo}}
+\addto\captionsspanish{\renewcommand{\appendixpagename}{Anexos}}
+\addto\captionsspanish{\renewcommand{\appendixtocname}{Anexos}}
 
 %% Entornos nuevos
 \newenvironment{abstract}{%
