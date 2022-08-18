@@ -194,11 +194,11 @@
 		\end{minipage}
 
 		\begin{center}
-			\vfill
+			\vspace{120pt}
 			\huge
 			\scspace{\@title}
 		\end{center}
-		\vspace{100pt}
+		\vspace{1.25cm}
 		\begin{center}
 		\if\@tesis\@empty\else
 			\scspaced{Tesis para optar al grado de}\\\scspace{\@tesis}
@@ -206,6 +206,7 @@
 				\\\bigskip \scspaced{En cotutela con \@cotutela}
 			\fi
 		\fi
+		\vspace{1.25cm}
 		\if\@memoria\@empty\else
 			\if\@tesis\@empty\else
 				\\\bigskip
@@ -213,7 +214,11 @@
 			\scspaced{Memoria para optar al título de}\\\scspace{\@memoria}
 		\fi
 
+		\vspace{1.25cm}
+
 		\scspace{por\\\@author}
+
+		\vspace{1.25cm}
 
 		\foreach \x [count=\xi] in \@guia {
 			\scspaced{Profesor Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}
@@ -223,6 +228,8 @@
 			\scspaced{Profesor Co-Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}
 		}
 
+		\vspace{1.25cm}
+
 		\scspaced{miembros de la comisión:}
 		\foreach \x in \@comision { \\\scspace{\x} }
 
@@ -230,6 +237,8 @@
 			\normalfont
 			Este trabajo ha sido parcialmente financiado por \@auspicio
 		\fi
+		
+		\vspace{1.25cm}
 
 		\scspace{\@lugar}\\\oldstyle{\@anho}
 		\end{center}
