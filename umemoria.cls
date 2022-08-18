@@ -223,7 +223,7 @@
 			\scspaced{Profesor Co-Guía\ifnum\xi>1 \ \xi \fi:}\\ \scspace{\x}
 		}
 
-		\scspaced{comisión:}
+		\scspaced{miembros de la comisión:}
 		\foreach \x in \@comision { \\\scspace{\x} }
 
 		\if\@auspicio\@empty\else
